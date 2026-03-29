@@ -45,9 +45,27 @@
             border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             min-width: 230px; display: none; border-radius: 4px; padding: 12px 0;
         }
+        
+        /* 新增：Impact 专用展开式大界面 (Mega Menu) 样式 */
+        .mega-dropdown {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            background: white; border: 1px solid var(--border-color);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            min-width: 650px; display: none; border-radius: 8px; padding: 25px; z-index: 1100;
+        }
+        .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .impact-column h4 { 
+            font-size: 0.7rem; text-transform: uppercase; color: var(--accent-blue); 
+            margin: 0 0 12px 0; border-bottom: 1px solid #F1F5F9; padding-bottom: 5px; 
+        }
+        .impact-column a { display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text-grey); }
+        .impact-column a:hover { color: var(--primary-navy); font-weight: 600; }
+
         .dropdown a { display: block; padding: 12px 20px; color: var(--text-grey); font-size: 0.85rem; }
         .dropdown a:hover { background: #F1F5F9; color: var(--accent-blue); }
-        .nav-item:hover .dropdown { display: block; }
+        
+        /* 悬停逻辑 */
+        .nav-item:hover .dropdown, .nav-item:hover .mega-dropdown { display: block; }
 
         .nav-right { display: flex; align-items: center; margin-left: 40px; gap: 20px; border-left: 1px solid var(--border-color); padding-left: 25px; }
         .signin-btn { text-transform: UPPERCASE; font-size: 0.85rem; font-weight: 600; color: var(--accent-blue); }
@@ -126,7 +144,35 @@
                     <a href="#">Our Story</a>
                 </div>
             </div>
-            <div class="nav-item"><span class="nav-link">Impact</span></div>
+
+            <div class="nav-item">
+                <span class="nav-link">Impact</span>
+                <div class="mega-dropdown">
+                    <div class="impact-grid">
+                        <div class="impact-column">
+                            <h4>Social</h4>
+                            <a href="#">Community Ties</a>
+                            <a href="#">Local Equity</a>
+                        </div>
+                        <div class="impact-column">
+                            <h4>Environmental</h4>
+                            <a href="#">Green Spaces</a>
+                            <a href="#">Net Zero TQ</a>
+                        </div>
+                        <div class="impact-column">
+                            <h4>Economic</h4>
+                            <a href="#">Wealth Anchor</a>
+                            <a href="#">Living Wage</a>
+                        </div>
+                        <div class="impact-column">
+                            <h4>Support</h4>
+                            <a href="#">Wellbeing</a>
+                            <a href="#">Mentorship</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <a href="funding-explorer.html" class="nav-link" style="margin-left:25px;">Opportunities</a>
 
             <div class="nav-right">
