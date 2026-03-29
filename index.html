@@ -10,17 +10,18 @@
             --accent-blue: #4A90E2;
             --primary-navy: #1A2B3C;
             --text-grey: #64748B;
-            --light-bg: #F8FAFC;
+            --soft-grey-bg: #F8FAFC;
+            --border-color: #E2E8F0;
             --success-green: #48BB78;
         }
 
-        body { font-family: 'Inter', sans-serif; margin: 0; color: var(--primary-navy); background: var(--light-bg); line-height: 1.6; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        body { font-family: 'Inter', sans-serif; margin: 0; color: var(--primary-navy); background: var(--soft-grey-bg); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- 1. Header & Navigation --- */
+        /* --- Navigation & Header --- */
         header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 50px; background: white; border-bottom: 1px solid #E2E8F0;
+            padding: 15px 50px; background: white; border-bottom: 1px solid var(--border-color);
             position: sticky; top: 0; z-index: 1000;
         }
         .logo-box { display: flex; align-items: center; gap: 12px; }
@@ -39,52 +40,71 @@
         .nav-item { position: relative; margin-left: 25px; padding: 10px 0; }
         .nav-link { text-transform: UPPERCASE; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; }
         .dropdown {
-            position: absolute; top: 100%; left: 0; background: white; border: 1px solid #E2E8F0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); min-width: 220px; display: none; border-radius: 4px; padding: 10px 0;
+            position: absolute; top: 100%; left: 0; background: white; border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06); min-width: 230px; display: none; border-radius: 4px; padding: 12px 0;
         }
-        .dropdown a { display: block; padding: 10px 20px; font-size: 0.85rem; color: var(--text-grey); }
+        .dropdown a { display: block; padding: 12px 20px; color: var(--text-grey); font-size: 0.85rem; }
         .dropdown a:hover { background: #F1F5F9; color: var(--accent-blue); }
         .nav-item:hover .dropdown { display: block; }
 
-        /* Floating Label & Right Nav */
-        .nav-right { display: flex; align-items: center; gap: 20px; border-left: 1px solid #E2E8F0; padding-left: 25px; margin-left: 25px; }
-        .floating-label { font-size: 0.7rem; background: var(--accent-blue); color: white; padding: 4px 10px; border-radius: 20px; font-weight: 600; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+        /* Sign In Floating Label */
+        .nav-right { display: flex; align-items: center; margin-left: 40px; gap: 20px; border-left: 1px solid var(--border-color); padding-left: 25px; }
+        .signin-wrapper { position: relative; }
+        .floating-tag {
+            position: absolute; top: -25px; left: 0; white-space: nowrap;
+            background: var(--accent-blue); color: white; font-size: 0.65rem;
+            padding: 2px 8px; border-radius: 10px; font-weight: 600;
+        }
 
-        /* --- 2. Hero Section --- */
+        /* --- Hero Section --- */
         .hero {
-            padding: 150px 20px; text-align: center;
+            padding: 160px 20px; text-align: center;
             background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('tq-bg.jpg');
             background-size: cover; background-position: center; background-attachment: fixed;
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; font-weight: 500; color: var(--primary-navy); }
-        .bid-badge { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey); margin-bottom: 20px; display: block; letter-spacing: 2px; }
+        .partner-badge { font-size: 0.8rem; font-weight: 700; color: var(--text-grey); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.8rem; margin-bottom: 25px; }
+        .hero p { font-size: 1.25rem; max-width: 850px; margin: 0 auto 45px; font-weight: 500; }
 
-        .btn { padding: 15px 35px; border-radius: 4px; font-weight: 600; text-transform: UPPERCASE; font-size: 0.85rem; letter-spacing: 1px; display: inline-block; transition: 0.3s; margin: 0 10px; cursor: pointer; border: none; }
-        .btn-blue { background: var(--accent-blue); color: white; }
+        .btn { padding: 16px 35px; border-radius: 4px; font-weight: 600; text-transform: UPPERCASE; font-size: 0.85rem; display: inline-block; margin: 0 10px; cursor: pointer; }
+        .btn-blue { background: var(--accent-blue); color: white; border: none; }
         .btn-white { background: white; color: var(--accent-blue); border: 1px solid var(--accent-blue); }
 
-        /* --- 3. Interactive Quiz Section --- */
+        /* --- Quiz Section --- */
         .quiz-section { padding: 80px 50px; background: white; text-align: center; }
-        .quiz-container { max-width: 600px; margin: 0 auto; padding: 40px; border: 1px solid #E2E8F0; border-radius: 12px; background: #F9FAFB; }
-        .quiz-option { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; text-align: left; font-size: 0.95rem; }
-        .quiz-result { margin-top: 25px; display: none; padding: 15px; border-radius: 6px; background: #EBFBF5; color: var(--success-green); font-weight: 600; }
+        .quiz-card { max-width: 600px; margin: 0 auto; padding: 40px; background: #F9FAFB; border-radius: 12px; border: 1px solid var(--border-color); }
+        .quiz-item { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; text-align: left; }
+        .quiz-result { margin-top: 20px; color: var(--success-green); font-weight: 600; display: none; }
 
-        /* --- 4. Funding Gateway (The Paths) --- */
-        .funding-gateway { padding: 100px 50px; display: none; scroll-behavior: smooth; }
-        .social-contract { background: #E3F2FD; padding: 40px; border-radius: 12px; margin-bottom: 50px; text-align: center; border: 2px dashed var(--accent-blue); }
-        .gateway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; }
-        .path-card { background: white; padding: 40px; border-radius: 12px; border: 1px solid #E2E8F0; opacity: 0.5; pointer-events: none; transition: 0.3s; }
-        .active-path { opacity: 1; pointer-events: all; border-color: var(--accent-blue); }
+        /* --- Funding Gateway (Dropdown Logic) --- */
+        .funding-gateway { padding: 100px 50px; display: none; background: #F1F5F9; }
+        .contract-box { 
+            background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 100%);
+            padding: 40px; border-radius: 16px; margin-bottom: 50px; text-align: center;
+            border: 2px solid var(--accent-blue); box-shadow: 0 15px 35px rgba(74,144,226,0.1);
+        }
+        .gateway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .path-card { background: white; padding: 40px; border-radius: 12px; opacity: 0.5; pointer-events: none; transition: 0.4s; }
+        .path-card.active { opacity: 1; pointer-events: all; transform: translateY(-5px); border: 1px solid var(--accent-blue); }
 
-        /* --- 5. Modal / Video Popup --- */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(26, 43, 60, 0.9); }
-        .modal-content { background: white; margin: 10% auto; padding: 40px; width: 60%; border-radius: 8px; text-align: center; }
+        /* --- Stats & Countdown --- */
+        .impact-showcase { padding: 100px 50px; text-align: center; }
+        .countdown-timer { 
+            margin-top: 40px; font-weight: 600; color: var(--accent-blue); 
+            background: rgba(74, 144, 226, 0.1); padding: 15px 30px; display: inline-block; border-radius: 30px;
+        }
 
-        /* --- 6. Governance & Footer --- */
-        .governance-note { text-align: center; padding: 40px; background: #EEF2F7; font-weight: 600; color: var(--text-grey); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-        footer { padding: 60px 50px; text-align: center; background: white; border-top: 1px solid #E2E8F0; }
+        /* --- Governance Bar --- */
+        .gov-bar { background: var(--primary-navy); color: white; padding: 15px; text-align: center; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* --- Modal --- */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 10% auto; padding: 40px; width: 50%; border-radius: 12px; text-align: center; }
+
+        /* Partner Logobar */
+        .partner-grid { display: flex; justify-content: center; gap: 40px; align-items: center; padding: 40px; opacity: 0.7; }
+        .partner-grid img { height: 40px; filter: grayscale(1); transition: 0.3s; }
+        .partner-grid img:hover { filter: grayscale(0); opacity: 1; }
 
     </style>
 </head>
@@ -97,95 +117,93 @@
         </a>
         <nav>
             <div class="nav-item">
-                <span class="nav-link">About</span>
+                <a class="nav-link">About</a>
                 <div class="dropdown">
-                    <a href="javascript:void(0)" onclick="openModal()">What is TQ Wealth Hub?</a>
+                    <a href="javascript:void(0)" onclick="openAboutModal()">What is TQ Wealth Hub?</a>
                     <a href="#">Our Story</a>
                     <a href="#">VCSE Funding</a>
                 </div>
             </div>
-            <div class="nav-item">
-                <span class="nav-link">Impact</span>
-                <div class="dropdown">
-                    <a href="#">Social Impact</a>
-                    <a href="#">Environmental</a>
-                    <a href="#">Economic Impact</a>
-                    <a href="#">Support & Wellbeing</a>
-                </div>
-            </div>
+            <div class="nav-item"><a class="nav-link">Impact</a></div>
+            <div class="nav-item"><a class="nav-link">Opportunities</a></div>
             <div class="nav-right">
-                <span class="floating-label">Join the Circular Economy</span>
-                <a href="#" class="nav-link" style="color: var(--accent-blue);">SIGN IN</a>
-                <span>🔍</span>
+                <div class="signin-wrapper">
+                    <span class="floating-tag">Join the Circular Economy of TQ</span>
+                    <a href="#" class="nav-link" style="color:var(--accent-blue)">SIGN IN</a>
+                </div>
+                <div class="search-icon">🔍</div>
             </div>
         </nav>
     </header>
 
     <section class="hero">
-        <span class="bid-badge">Powered by Community, Anchored by Bristol BID</span>
+        <span class="partner-badge">Powered by Community, Anchored by Bristol BID</span>
         <h1>Keep Wealth Local. Build Community Power.</h1>
         <p>Bristol’s first Wealth Hub dedicated to Generative Organisations and VCSEs. We anchor wealth in Temple Quarter to create a self-sustaining local economy owned by you.</p>
         <div class="cta-group">
-            <button class="btn btn-blue" onclick="scrollToFunding()">Explore Funding</button>
+            <button class="btn btn-blue" onclick="toggleFunding()">Explore Funding</button>
             <button class="btn btn-white">Community Hub</button>
         </div>
     </section>
 
+    <div class="gov-bar">
+        Governance: Run by the community, for the community. Decision power stays in TQ.
+    </div>
+
     <section class="quiz-section">
-        <div class="quiz-container">
+        <div class="quiz-card">
             <h2 style="font-family: 'Playfair Display', serif;">Is your organisation Generative?</h2>
-            <p style="color: var(--text-grey); font-size: 0.9rem; margin-bottom: 30px;">Quick check for local economic eligibility</p>
-            <div class="quiz-option"><input type="checkbox" class="quiz-check"> Owned by TQ Resident / Local Workers?</div>
-            <div class="quiz-option"><input type="checkbox" class="quiz-check"> 75%+ Local Employment within Bristol?</div>
-            <div class="quiz-option"><input type="checkbox" class="quiz-check"> Committed to Real Living Wage?</div>
-            <div class="quiz-option"><input type="checkbox" class="quiz-check"> Profits reinvested locally?</div>
-            <div id="quizResult" class="quiz-result">You belong here! You are a Generative Champion.</div>
+            <div class="quiz-item"><input type="checkbox" onchange="checkQuiz()"> <span>75%+ Local Employment?</span></div>
+            <div class="quiz-item"><input type="checkbox" onchange="checkQuiz()"> <span>Owned by TQ Resident?</span></div>
+            <div class="quiz-item"><input type="checkbox" onchange="checkQuiz()"> <span>Pay a Real Living Wage?</span></div>
+            <div id="quizResult" class="quiz-result">✓ You qualify as a Generative Organisation!</div>
         </div>
     </section>
 
-    <div class="governance-note">
-        “Run by the community, for the community. Decision power stays in TQ.”
-    </div>
-
-    <section id="funding-gateway" class="funding-gateway">
-        <div class="social-contract">
-            <h2 style="font-family: 'Playfair Display', serif;">The TQ Social Contract</h2>
-            <p style="font-weight: 600; font-size: 1.1rem;">"Funding is a cycle. Reinvest 50% within 5 years to keep Temple Quarter growing."</p>
-            <p style="font-size: 0.85rem; color: var(--text-grey); margin-bottom: 25px;">Membership is free, but our social contract ensures wealth circulates forever.</p>
-            <label style="cursor: pointer; color: var(--accent-blue); font-weight: 700;">
-                <input type="checkbox" id="contractCheck" onchange="activatePaths()"> I UNDERSTAND AND COMMIT TO THE SOCIAL CONTRACT
+    <section id="fundingGateway" class="funding-gateway">
+        <div class="contract-box">
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--accent-blue);">The TQ Social Contract</h2>
+            <p><strong>"Funding is a cycle. Reinvest 50% within 5 years to keep Temple Quarter growing."</strong></p>
+            <label style="cursor: pointer; display: inline-block; margin-top: 20px;">
+                <input type="checkbox" id="contractCheck" onchange="togglePaths()"> 
+                <span style="margin-left:10px; font-weight:600;">I understand and commit to the Social Contract</span>
             </label>
         </div>
-
         <div class="gateway-grid">
             <div class="path-card" id="bizCard">
                 <h3>Generative Businesses</h3>
-                <p>Focus on local ownership, high employment, and surplus sharing.</p>
-                <button class="btn btn-blue" style="width: 100%; margin: 20px 0;">Apply Now</button>
+                <p>Ownership, Local Jobs, Profit Sharing.</p>
+                <button class="btn btn-blue" style="width:100%; margin: 20px 0;">Start Application</button>
             </div>
             <div class="path-card" id="vcseCard">
                 <h3>VCSEs (Community Capital)</h3>
-                <p>Focus on social value, environment, and holistic community wellbeing.</p>
-                <button class="btn btn-blue" style="width: 100%; margin: 20px 0;">Apply Now</button>
+                <p>Social Value, Wellbeing, Environment.</p>
+                <button class="btn btn-blue" style="width:100%; margin: 20px 0;">Start Application</button>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 50px; text-align: center; background: white;">
-        <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 40px;">Fueling Bristol's Local Growth</h2>
-        <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); border: 1px solid var(--accent-blue); display: inline-block; padding: 15px 30px; border-radius: 8px;">
-            Next community vote starts in <span id="countdown">24</span> days
+    <section class="impact-showcase">
+        <h2 class="section-title">Fueling Bristol's Local Growth</h2>
+        <div class="countdown-timer">
+            ⏳ Next community vote starts in <span id="days">24</span> days
         </div>
     </section>
 
-    <div id="videoModal" class="modal">
+    <div class="partner-grid">
+        <img src="logo-bristol-bid.png" alt="Bristol BID">
+        <img src="logo-uob.png" alt="University of Bristol">
+        <img src="logo-vcse.png" alt="VCSE Partner">
+    </div>
+
+    <div id="aboutModal" class="modal">
         <div class="modal-content">
-            <h2 style="font-family: 'Playfair Display', serif;">The Generative Economy Explained</h2>
-            <p>Imagine a Bristol where wealth doesn't leak out, but circles within.</p>
-            <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+            <h2 style="font-family: 'Playfair Display', serif;">What is TQ Wealth Hub?</h2>
+            <p>Our vision is a <strong>Generative Economy</strong>: where wealth circles within our community instead of leaking out.</p>
+            <div style="background:#f0f4f8; height:200px; display:flex; align-items:center; justify-content:center; margin:20px 0; border-radius:8px;">
                 [ Video / Infographic Placeholder ]
             </div>
-            <button class="btn btn-blue" onclick="closeModal()">Close</button>
+            <button class="btn btn-blue" onclick="closeAboutModal()">Close</button>
         </div>
     </div>
 
@@ -194,32 +212,26 @@
     </footer>
 
     <script>
-        // 1. Quiz Logic
-        const checks = document.querySelectorAll('.quiz-check');
-        checks.forEach(c => c.addEventListener('change', () => {
-            const checkedCount = document.querySelectorAll('.quiz-check:checked').length;
-            document.getElementById('quizResult').style.display = checkedCount >= 3 ? 'block' : 'none';
-        }));
-
-        // 2. Funding Gateway Logic
-        function scrollToFunding() {
-            document.getElementById('funding-gateway').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('funding-gateway').offsetTop - 100, behavior: 'smooth' });
+        function checkQuiz() {
+            const checked = document.querySelectorAll('.quiz-item input:checked').length;
+            document.getElementById('quizResult').style.display = checked >= 2 ? 'block' : 'none';
         }
 
-        function activatePaths() {
+        function toggleFunding() {
+            const gateway = document.getElementById('fundingGateway');
+            gateway.style.display = 'block';
+            gateway.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function togglePaths() {
             const isChecked = document.getElementById('contractCheck').checked;
-            const cards = [document.getElementById('bizCard'), document.getElementById('vcseCard')];
-            cards.forEach(card => isChecked ? card.classList.add('active-path') : card.classList.remove('active-path'));
+            document.getElementById('bizCard').classList.toggle('active', isChecked);
+            document.getElementById('vcseCard').classList.toggle('active', isChecked);
         }
 
-        // 3. Modal Logic
-        function openModal() { document.getElementById('videoModal').style.display = 'block'; }
-        function closeModal() { document.getElementById('videoModal').style.display = 'none'; }
-
-        // 4. Countdown Logic
-        let days = 24;
-        setInterval(() => { /* Simple display logic */ }, 1000);
+        function openAboutModal() { document.getElementById('aboutModal').style.display = 'block'; }
+        function closeAboutModal() { document.getElementById('aboutModal').style.display = 'none'; }
     </script>
+
 </body>
 </html>
