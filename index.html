@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temple Quarter Wealth Hub | Bristol</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --accent-blue: #4A90E2;
@@ -14,23 +14,15 @@
             --border-color: #E2E8F0;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            color: var(--primary-navy);
-            background: var(--soft-grey-bg);
-            line-height: 1.6;
-        }
-
+        body { font-family: 'Inter', sans-serif; margin: 0; color: var(--primary-navy); background: var(--soft-grey-bg); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* ================= Header & Navigation ================= */
+        /* --- Header & Navigation --- */
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 50px; background: white; border-bottom: 1px solid var(--border-color);
             position: sticky; top: 0; z-index: 1000;
         }
-
         .logo-box { display: flex; align-items: center; gap: 12px; }
         .tq-circle {
             width: 40px; height: 40px; border: 2px solid var(--primary-navy); border-radius: 50%;
@@ -42,7 +34,6 @@
             border: 2px solid var(--accent-blue); border-radius: 50%;
             border-top-color: transparent; transform: rotate(45deg);
         }
-
         .logo-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; }
 
         nav { display: flex; align-items: center; }
@@ -50,7 +41,7 @@
         .nav-link { text-transform: UPPERCASE; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; }
 
         .dropdown {
-            position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98);
+            position: absolute; top: 100%; left: 0; background: white;
             border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             min-width: 230px; display: none; border-radius: 4px; padding: 12px 0;
         }
@@ -61,13 +52,12 @@
         .nav-right { display: flex; align-items: center; margin-left: 40px; gap: 20px; border-left: 1px solid var(--border-color); padding-left: 25px; }
         .signin-btn { text-transform: UPPERCASE; font-size: 0.85rem; font-weight: 600; color: var(--accent-blue); }
 
-        /* ================= Hero Section ================= */
+        /* --- Hero Section --- */
         .hero {
             padding: 160px 20px; text-align: center;
             background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('tq-bg.jpg');
             background-size: cover; background-position: center; background-attachment: fixed;
         }
-
         .hero h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.8rem; margin-bottom: 25px; letter-spacing: -1px; }
         .hero p { font-size: 1.25rem; color: var(--primary-navy); max-width: 850px; margin: 0 auto 45px; font-weight: 500; }
 
@@ -78,12 +68,11 @@
         .btn-blue { background: var(--accent-blue); color: white; }
         .btn-white { background: white; color: var(--accent-blue); border: 1px solid var(--accent-blue); }
 
-        /* ================= Governance & Quiz ================= */
+        /* --- Governance & Quiz --- */
         .governance-tag {
             background: var(--primary-navy); color: white; text-align: center;
             padding: 12px; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
         }
-
         .quiz-section {
             max-width: 700px; margin: -40px auto 60px; background: white;
             padding: 35px; border-radius: 8px; border: 1px solid var(--border-color);
@@ -92,51 +81,48 @@
         .quiz-grid { display: flex; justify-content: center; gap: 25px; margin-top: 20px; flex-wrap: wrap; }
         .quiz-item { font-size: 0.85rem; color: var(--text-grey); display: flex; align-items: center; gap: 8px; font-weight: 500; }
 
-        /* ================= Impact Showcase ================= */
-        .impact-showcase { padding: 100px 50px; text-align: center; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 20px; }
-        .vote-countdown {
-            color: var(--accent-blue); font-weight: 600; font-size: 1rem;
-            margin-bottom: 50px; display: inline-block; padding: 10px 25px;
-            background: #EBF4FF; border-radius: 30px;
+        /* --- Social Contract (Rich Content) --- */
+        .contract-section {
+            padding: 120px 50px; background: linear-gradient(rgba(26, 43, 60, 0.85), rgba(26, 43, 60, 0.85)), url('community-bg.jpg'); 
+            background-size: cover; background-position: center; color: white; text-align: center;
         }
+        .contract-content { max-width: 800px; margin: 0 auto; }
+        .contract-content h3 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 20px; }
+        .contract-content p { font-size: 1.3rem; opacity: 0.9; line-height: 1.8; }
 
+        /* --- Impact Stats --- */
+        .impact-showcase { padding: 100px 50px; text-align: center; }
         .counter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         .counter-card { background: white; padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); }
         .counter-value { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent-blue); font-weight: 700; margin: 10px 0; }
 
-        /* ================= Modal ================= */
+        /* Modal Style */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(26, 43, 60, 0.95); z-index: 2000; align-items: center; justify-content: center;
         }
-        .modal-body { background: white; padding: 50px; border-radius: 12px; max-width: 600px; text-align: center; color: var(--primary-navy); }
-
+        .modal-body { background: white; padding: 50px; border-radius: 12px; max-width: 600px; text-align: center; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="/" class="logo-box">
+        <div class="logo-box">
             <div class="tq-circle">TQ</div>
             <div class="logo-text">Temple Quarter Wealth Hub</div>
-        </a>
-
+        </div>
         <nav>
             <div class="nav-item">
                 <span class="nav-link">About</span>
                 <div class="dropdown">
-                    <a href="javascript:void(0)" onclick="toggleModal(true)">What is TQ Wealth Hub?</a>
+                    <a href="javascript:void(0)" onclick="toggleModal(true)">What is TQ?</a>
                     <a href="#">Our Story</a>
-                    <a href="#">VCSE Funding</a>
                 </div>
             </div>
             <div class="nav-item"><span class="nav-link">Impact</span></div>
-            <a href="#" class="nav-link" style="margin-left:25px;">Opportunities</a>
-
+            <a href="funding-explorer.html" class="nav-link" style="margin-left:25px; color: var(--accent-blue);">Opportunities</a>
             <div class="nav-right">
                 <a href="#" class="signin-btn">SIGN IN</a>
-                <div style="cursor:pointer">🔍</div>
             </div>
         </nav>
     </header>
@@ -155,12 +141,10 @@
         </div>
     </section>
 
-    <div class="governance-tag">
-        Run by the community, for the community. Decision power stays in TQ.
-    </div>
+    <div class="governance-tag">Run by the community, for the community.</div>
 
     <section class="quiz-section">
-        <h3 style="font-family: 'Playfair Display', serif; margin: 0 0 10px;">Is your organisation Generative?</h3>
+        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Is your organisation Generative?</h3>
         <div class="quiz-grid">
             <label class="quiz-item"><input type="checkbox"> 75%+ Local Employment?</label>
             <label class="quiz-item"><input type="checkbox"> Owned by TQ Resident?</label>
@@ -168,33 +152,29 @@
         </div>
     </section>
 
-    <section class="contract-section" style="padding: 120px 50px; background: linear-gradient(rgba(26, 43, 60, 0.85), rgba(26, 43, 60, 0.85)), url('community-bg.jpg'); background-size: cover; background-position: center; color: white; text-align: center;">
+    <section class="contract-section">
         <div class="contract-content">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px;">The TQ Social Contract</h3>
-            <p style="font-size: 1.4rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">"Funding is a cycle. Reinvest 50% within 5 years to keep Temple Quarter growing."</p>
+            <h3>The TQ Social Contract</h3>
+            <p>"Funding is a cycle. Reinvest 50% within 5 years to keep Temple Quarter growing."</p>
             <div style="margin-top: 40px;">
-                <a href="funding-explorer.html" class="btn btn-blue" style="padding: 14px 40px;">View Path Options</a>
+                <a href="funding-explorer.html" class="btn btn-white" style="border-radius: 50px; padding: 12px 35px;">Learn More About Funding</a>
             </div>
         </div>
     </section>
 
     <section class="impact-showcase">
-        <h2 class="section-title">Fueling Bristol's Local Growth</h2>
-        <div class="vote-countdown">
-            ⏳ Next community vote starts in <strong>24</strong> days
-        </div>
-        
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 40px;">Fueling Bristol's Local Growth</h2>
         <div class="counter-grid">
             <div class="counter-card">
-                <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey);">Total Capital Invested Locally</p>
+                <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey);">Capital Invested</p>
                 <p class="counter-value">£12.5M</p>
             </div>
             <div class="counter-card">
-                <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey);">Successful Projects Funded</p>
+                <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey);">Successful Projects</p>
                 <p class="counter-value">48+</p>
             </div>
             <div class="counter-card">
-                <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey);">Bristol Businesses Supported</p>
+                <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey);">Businesses Supported</p>
                 <p class="counter-value">124+</p>
             </div>
         </div>
@@ -204,10 +184,7 @@
         <div class="modal-body">
             <h2 style="font-family: 'Playfair Display', serif;">What is TQ Wealth Hub?</h2>
             <p>A "Generative Economy" ensures that wealth created in Bristol stays in Bristol.</p>
-            <div style="background: #F1F5F9; height: 200px; display: flex; align-items: center; justify-content: center; margin: 30px 0; border-radius: 8px;">
-                [ Video / Infographic ]
-            </div>
-            <button class="btn btn-white" onclick="toggleModal(false)">Close</button>
+            <button class="btn btn-blue" style="margin-top:20px;" onclick="toggleModal(false)">Close</button>
         </div>
     </div>
 
