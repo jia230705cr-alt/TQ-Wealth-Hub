@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funding Explorer | Temple Quarter</title>
+    <title>Funding Explorer | Path Selection</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --navy: #1A2B3C;
-            --accent: #4A90E2;
             --gen-green: #00D1A0;
             --vcse-purple: #7F56D9;
         }
@@ -17,37 +16,36 @@
         a { text-decoration: none; }
 
         header { padding: 20px 50px; background: white; border-bottom: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; }
-        .back-btn { color: var(--accent); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .back-link { color: #4A90E2; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
 
-        .explorer-header { text-align: center; padding: 80px 20px; }
-        .explorer-header h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-style: italic; margin-bottom: 15px; }
+        .explorer-header { text-align: center; padding: 70px 20px; }
+        .explorer-header h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-style: italic; }
 
-        /* 卡片布局 */
-        .grid-container { display: flex; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto 100px; padding: 0 20px; }
+        /* 卡片容器布局 */
+        .grid { display: flex; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto 100px; padding: 0 20px; }
 
-        .path-card {
+        .card {
             flex: 1; min-height: 550px; border-radius: 24px; position: relative;
             overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 45px; transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer;
+            padding: 45px; transition: 0.4s ease; cursor: pointer;
         }
+        .card:hover { transform: translateY(-10px); }
 
-        .path-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        /* 背景图片逻辑 */
+        .card-bg { position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; z-index: 1; transition: 0.6s; }
+        .card:hover .card-bg { transform: scale(1.1); }
+        
+        /* 引用你上传的文件名 */
+        .bg-gen { background-image: url('iggy-love-upICLsVPpjE-unsplash.jpg'); }
+        .bg-vcse { background-image: url('david-clode-eL4ADAsiOR8-unsplash.jpg'); }
 
-        /* 背景图片处理 */
-        .card-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; transition: 0.6s; }
-        .path-card:hover .card-image { transform: scale(1.1); }
+        /* 遮罩层确保文字清晰 */
+        .overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, rgba(26,43,60,0.95) 15%, rgba(26,43,60,0.1) 100%); z-index: 2; }
 
-        /* 自动关联你上传的文件名 */
-        .img-gen { background-image: url('iggy-love-upICLsVPpjE-unsplash.jpg'); }
-        .img-vcse { background-image: url('david-clode-eL4ADAsiOR8-unsplash.jpg'); }
+        .content { position: relative; z-index: 3; color: white; }
+        .content h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 0 0 15px; }
 
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(26, 43, 60, 0.95) 20%, rgba(26, 43, 60, 0.1) 100%); z-index: 2; }
-
-        .card-content { position: relative; z-index: 3; color: white; }
-        .card-content h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 0 0 15px; }
-        .card-content p { color: rgba(255, 255, 255, 0.8); margin-bottom: 35px; }
-
-        .btn-apply { padding: 16px 30px; border-radius: 50px; border: none; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .btn-apply { padding: 16px 30px; border-radius: 50px; border: none; font-weight: 700; text-transform: uppercase; cursor: pointer; }
         .btn-gen { background: var(--gen-green); color: var(--navy); }
         .btn-vcse { background: var(--vcse-purple); color: white; }
     </style>
@@ -55,35 +53,35 @@
 <body>
 
     <header>
-        <a href="index.html" class="back-btn">← Back to Hub</a>
+        <a href="index.html" class="back-link">← Return to Home</a>
         <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem;">Wealth Explorer</div>
         <div style="width: 80px;"></div>
     </header>
 
     <section class="explorer-header">
         <h1>Select Your Funding Path</h1>
-        <p>Choose the model that aligns with your organization's mission.</p>
+        <p>Tailored capital for Bristol's generative businesses and community impact.</p>
     </section>
 
-    <div class="grid-container">
-        <div class="path-card" onclick="location.href='generative-form.html'">
-            <div class="card-image img-gen"></div>
+    <div class="grid">
+        <div class="card" onclick="window.location.href='generative-form.html'">
+            <div class="card-bg bg-gen"></div>
             <div class="overlay"></div>
-            <div class="card-content">
-                <div style="font-size: 2rem; margin-bottom: 10px;">🏗️</div>
+            <div class="content">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">🏗️</div>
                 <h2>Generative Funding</h2>
-                <p>For businesses focused on local ownership and circulating wealth in Bristol.</p>
+                <p>For organizations prioritizing local ownership and economic resilience.</p>
                 <button class="btn-apply btn-gen">Apply for Funding</button>
             </div>
         </div>
 
-        <div class="path-card" onclick="location.href='vcse-form.html'">
-            <div class="card-image img-vcse"></div>
+        <div class="card" onclick="window.location.href='vcse-form.html'">
+            <div class="card-bg bg-vcse"></div>
             <div class="overlay"></div>
-            <div class="card-content">
-                <div style="font-size: 2rem; margin-bottom: 10px;">🌱</div>
+            <div class="content">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">🌱</div>
                 <h2>VCSEs Funding</h2>
-                <p>Support for social enterprises and charities delivering community value.</p>
+                <p>Support for social enterprises and charities with community-led missions.</p>
                 <button class="btn-apply btn-vcse">Apply for Funding</button>
             </div>
         </div>
