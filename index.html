@@ -12,135 +12,80 @@
             --text-grey: #64748B;
             --soft-grey-bg: #F8FAFC;
             --border-color: #E2E8F0;
-            --generative-green: #38A169; /* Unique color for Biz */
-            --vcse-purple: #805AD5;      /* Unique color for VCSE */
+            --gen-green: #00D1A0;
+            --vcse-purple: #7F56D9;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            color: var(--primary-navy);
-            background: var(--soft-grey-bg);
-            line-height: 1.6;
-        }
-
+        body { font-family: 'Inter', sans-serif; margin: 0; color: var(--primary-navy); background: var(--soft-grey-bg); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* ================= Header & Navigation ================= */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 50px; background: white; border-bottom: 1px solid var(--border-color);
-            position: sticky; top: 0; z-index: 1000;
-        }
-
+        /* --- Header Section --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: white; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
         .logo-box { display: flex; align-items: center; gap: 12px; }
-        .tq-circle {
-            width: 40px; height: 40px; border: 2px solid var(--primary-navy); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; position: relative;
-        }
-        .tq-circle::after {
-            content: ''; position: absolute; width: 100%; height: 100%;
-            border: 2px solid var(--accent-blue); border-radius: 50%;
-            border-top-color: transparent; transform: rotate(45deg);
-        }
-
+        .tq-circle { width: 40px; height: 40px; border: 2px solid var(--primary-navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; position: relative; }
+        .tq-circle::after { content: ''; position: absolute; width: 100%; height: 100%; border: 2px solid var(--accent-blue); border-radius: 50%; border-top-color: transparent; transform: rotate(45deg); }
         .logo-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; }
 
         nav { display: flex; align-items: center; }
         .nav-item { position: relative; margin-left: 25px; padding: 10px 0; }
         .nav-link { text-transform: UPPERCASE; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; }
-
-        .dropdown {
-            position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98);
-            border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            min-width: 230px; display: none; border-radius: 4px; padding: 12px 0;
-        }
-        .dropdown a { display: block; padding: 12px 20px; color: var(--text-grey); font-size: 0.85rem; }
-        .dropdown a:hover { background: #F1F5F9; color: var(--accent-blue); }
-        .nav-item:hover .dropdown { display: block; }
-
         .nav-right { display: flex; align-items: center; margin-left: 40px; gap: 20px; border-left: 1px solid var(--border-color); padding-left: 25px; }
         .signin-btn { text-transform: UPPERCASE; font-size: 0.85rem; font-weight: 600; color: var(--accent-blue); }
 
-        /* ================= Hero Section ================= */
-        .hero {
-            padding: 160px 20px; text-align: center;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('tq-bg.jpg');
-            background-size: cover; background-position: center; background-attachment: fixed;
-        }
-
+        /* --- Hero Section --- */
+        .hero { padding: 160px 20px; text-align: center; background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('tq-bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
         .hero h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.8rem; margin-bottom: 25px; letter-spacing: -1px; }
         .hero p { font-size: 1.25rem; color: var(--primary-navy); max-width: 850px; margin: 0 auto 45px; font-weight: 500; }
-
-        .cta-group .btn {
-            padding: 16px 35px; border-radius: 4px; font-weight: 600; text-transform: UPPERCASE;
-            font-size: 0.85rem; letter-spacing: 1px; display: inline-block; margin: 0 10px; border: none; cursor: pointer; transition: 0.3s;
-        }
+        .cta-group .btn { padding: 16px 35px; border-radius: 4px; font-weight: 600; text-transform: UPPERCASE; font-size: 0.85rem; letter-spacing: 1px; display: inline-block; margin: 0 10px; border: none; cursor: pointer; transition: 0.3s; }
         .btn-blue { background: var(--accent-blue); color: white; }
         .btn-white { background: white; color: var(--accent-blue); border: 1px solid var(--accent-blue); }
 
-        /* ================= Governance & Quiz ================= */
-        .governance-tag {
-            background: var(--primary-navy); color: white; text-align: center;
-            padding: 12px; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-        }
-
-        .quiz-section {
-            max-width: 700px; margin: -40px auto 60px; background: white;
-            padding: 35px; border-radius: 8px; border: 1px solid var(--border-color);
-            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); position: relative; z-index: 10;
-        }
+        /* --- Governance & Quiz --- */
+        .governance-tag { background: var(--primary-navy); color: white; text-align: center; padding: 12px; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        .quiz-section { max-width: 700px; margin: -40px auto 60px; background: white; padding: 35px; border-radius: 8px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); position: relative; z-index: 10; }
         .quiz-grid { display: flex; justify-content: center; gap: 25px; margin-top: 20px; flex-wrap: wrap; }
         .quiz-item { font-size: 0.85rem; color: var(--text-grey); display: flex; align-items: center; gap: 8px; font-weight: 500; }
 
-        /* ================= Social Contract (Image BG & No Border) ================= */
-        .contract-section {
-            padding: 100px 50px; 
-            background: linear-gradient(rgba(26, 43, 60, 0.85), rgba(26, 43, 60, 0.85)), url('community-bg.jpg'); 
-            background-size: cover; background-position: center; color: white; text-align: center;
-        }
+        /* --- Immersive Social Contract Section --- */
+        .contract-section { padding: 120px 20px; color: white; text-align: center; background-color: #0A1929; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .contract-header { max-width: 800px; margin: 0 auto 70px; }
+        .contract-header h3 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px; text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); }
+        .gateway-grid { display: flex; justify-content: center; gap: 40px; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
 
-        .contract-content { max-width: 800px; margin: 0 auto 60px; }
-        .contract-content h3 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
-
-        .gateway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1000px; margin: 0 auto; }
+        /* Glass Card Styles */
+        .path-box { flex: 1; min-width: 340px; padding: 60px 40px; border-radius: 20px; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .path-box:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); }
         
-        .path-box {
-            padding: 50px 40px; border-radius: 12px; background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(10px); text-align: center; transition: 0.4s; border: none;
+        /* Specific Unsplash Backgrounds */
+        #path-gen { 
+            background-image: url('https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&q=80&w=1000'); /* Corridor placeholder link */
+            background-size: cover; 
+            background-position: center; 
         }
-        .path-box:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.15); }
+        #path-vcse { 
+            background-image: url('https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&q=80&w=1000'); /* Garden placeholder link */
+            background-size: cover; 
+            background-position: center; 
+        }
         
-        .icon-circle {
-            width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;
-        }
+        /* Glass Overlay Adjustments */
+        .glass-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(15, 23, 42, 0.75); z-index: 1; }
+        .path-content { position: relative; z-index: 2; }
 
-        /* Distinct Button Colors */
-        .btn-gen { background: var(--generative-green); color: white; }
-        .btn-vcse { background: var(--vcse-purple); color: white; }
+        .icon-wrapper { font-size: 3.2rem; margin-bottom: 25px; display: inline-block; filter: drop-shadow(0 0 10px rgba(255,255,255,0.4)); }
+        .path-box h4 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
+        .path-box p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.85); margin-bottom: 40px; line-height: 1.7; }
 
-        /* ================= Impact Showcase ================= */
+        /* Button Styling */
+        .btn-path { padding: 18px 30px; border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; width: 85%; transition: 0.3s; }
+        .btn-gen { background: var(--gen-green); color: #051622; box-shadow: 0 5px 20px rgba(0, 209, 160, 0.4); }
+        .btn-vcse { background: var(--vcse-purple); color: white; box-shadow: 0 5px 20px rgba(127, 86, 217, 0.4); }
+
+        /* --- Impact Showcase --- */
         .impact-showcase { padding: 100px 50px; text-align: center; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 20px; }
-        .vote-countdown {
-            color: var(--accent-blue); font-weight: 600; font-size: 1rem;
-            margin-bottom: 50px; display: inline-block; padding: 10px 25px;
-            background: #EBF4FF; border-radius: 30px;
-        }
-
         .counter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         .counter-card { background: white; padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); }
-        .counter-value { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent-blue); font-weight: 700; margin: 10px 0; }
-
-        /* ================= Modal ================= */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(26, 43, 60, 0.95); z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-body { background: white; padding: 50px; border-radius: 12px; max-width: 600px; text-align: center; color: var(--primary-navy); }
-
+        .counter-value { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent-blue); font-weight: 700; }
     </style>
 </head>
 <body>
@@ -150,19 +95,10 @@
             <div class="tq-circle">TQ</div>
             <div class="logo-text">Temple Quarter Wealth Hub</div>
         </a>
-
         <nav>
-            <div class="nav-item">
-                <span class="nav-link">About</span>
-                <div class="dropdown">
-                    <a href="javascript:void(0)" onclick="toggleModal(true)">What is TQ Wealth Hub?</a>
-                    <a href="#">Our Story</a>
-                    <a href="#">VCSE Funding</a>
-                </div>
-            </div>
+            <div class="nav-item"><span class="nav-link">About</span></div>
             <div class="nav-item"><span class="nav-link">Impact</span></div>
             <a href="#" class="nav-link" style="margin-left:25px;">Opportunities</a>
-
             <div class="nav-right">
                 <a href="#" class="signin-btn">SIGN IN</a>
                 <div style="cursor:pointer">🔍</div>
@@ -171,12 +107,9 @@
     </header>
 
     <section class="hero">
-        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 700; color: var(--text-grey); margin-bottom: 20px;">
-            Powered by Community, Anchored by Bristol BID
-        </p>
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 700; color: var(--text-grey); margin-bottom: 20px;">Powered by Community, Anchored by Bristol BID</p>
         <h1>Keep Wealth Local. Build Community Power.</h1>
         <p>Bristol’s first Wealth Hub dedicated to Generative Organisations and VCSEs. We anchor wealth in Temple Quarter to create a self-sustaining local economy owned by you.</p>
-        
         <div class="cta-group">
             <a href="funding-explorer.html" class="btn btn-blue">Explore Funding</a>
             <button class="btn btn-blue">Apply Now</button>
@@ -184,9 +117,7 @@
         </div>
     </section>
 
-    <div class="governance-tag">
-        Run by the community, for the community. Decision power stays in TQ.
-    </div>
+    <div class="governance-tag">Run by the community, for the community. Decision power stays in TQ.</div>
 
     <section class="quiz-section">
         <h3 style="font-family: 'Playfair Display', serif; margin: 0 0 10px;">Is your organisation Generative?</h3>
@@ -198,33 +129,36 @@
     </section>
 
     <section class="contract-section">
-        <div class="contract-content">
+        <div class="contract-header">
             <h3>The TQ Social Contract</h3>
-            <p style="font-size: 1.2rem; opacity: 0.9;">"Funding is a cycle. Reinvest 50% within 5 years to keep Temple Quarter growing."</p>
+            <p>"Funding is a cycle. Reinvest 50% within 5 years to keep Temple Quarter growing."</p>
         </div>
 
         <div class="gateway-grid">
-            <div class="path-box">
-                <div class="icon-circle">🏗️</div>
-                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Generative Businesses</h3>
-                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 30px;">Local ownership, profit sharing, and local staff.</p>
-                <button class="btn btn-gen" style="width:100%">Business Funding</button>
+            <div class="path-box" id="path-gen">
+                <div class="glass-overlay"></div>
+                <div class="path-content">
+                    <div class="icon-wrapper">🏗️</div>
+                    <h4>Generative Funding</h4>
+                    <p>Designed for organizations prioritizing local ownership, profit sharing, and anchoring wealth in Bristol’s soil.</p>
+                    <button class="btn-path btn-gen" onclick="location.href='generative-funding.html'">Apply for Funding</button>
+                </div>
             </div>
-            <div class="path-box">
-                <div class="icon-circle">🌱</div>
-                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">VCSEs & Community</h3>
-                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 30px;">Social impact, wellbeing, and sustainability.</p>
-                <button class="btn btn-vcse" style="width:100%">Social Capital</button>
+
+            <div class="path-box" id="path-vcse">
+                <div class="glass-overlay"></div>
+                <div class="path-content">
+                    <div class="icon-wrapper">🌱</div>
+                    <h4>VCSEs Funding</h4>
+                    <p>Tailored for social enterprises and charities focused on social value, wellbeing, and environmental impact.</p>
+                    <button class="btn-path btn-vcse" onclick="location.href='community-funding.html'">Apply for Funding</button>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="impact-showcase">
-        <h2 class="section-title">Fueling Bristol's Local Growth</h2>
-        <div class="vote-countdown">
-            ⏳ Next community vote starts in <strong>24</strong> days
-        </div>
-        
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 50px;">Fueling Bristol's Local Growth</h2>
         <div class="counter-grid">
             <div class="counter-card">
                 <p style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey);">Total Capital Invested Locally</p>
@@ -240,23 +174,6 @@
             </div>
         </div>
     </section>
-
-    <div class="modal-overlay" id="aboutModal">
-        <div class="modal-body">
-            <h2 style="font-family: 'Playfair Display', serif;">What is TQ Wealth Hub?</h2>
-            <p>A "Generative Economy" ensures that wealth created in Bristol stays in Bristol.</p>
-            <div style="background: #F1F5F9; height: 200px; display: flex; align-items: center; justify-content: center; margin: 30px 0; border-radius: 8px;">
-                [ Video / Infographic ]
-            </div>
-            <button class="btn btn-white" onclick="toggleModal(false)">Close</button>
-        </div>
-    </div>
-
-    <script>
-        function toggleModal(show) {
-            document.getElementById('aboutModal').style.display = show ? 'flex' : 'none';
-        }
-    </script>
 
 </body>
 </html>
