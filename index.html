@@ -4,289 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temple Quarter Wealth Hub | Bristol</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent-blue: #4A90E2;      /* For links, counters, active states */
-            --primary-navy: #1A2B3C;     /* For logos, text */
-            --text-grey: #64748B;       /* For subtexts */
-            --soft-grey-bg: #F8FAFC;    /* Page body */
-            --border-color: #E2E8F0;
+            --accent-blue: #4A90E2;
+            --primary-navy: #1A2B3C;
+            --text-grey: #64748B;
+            --light-bg: #F8FAFC;
+            --success-green: #48BB78;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            color: var(--primary-navy);
-            background: var(--soft-grey-bg);
-            line-height: 1.6;
-        }
+        body { font-family: 'Inter', sans-serif; margin: 0; color: var(--primary-navy); background: var(--light-bg); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
-
-        /* ================= Header & Advanced Navigation ================= */
+        /* --- 1. Header & Navigation --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 50px; background: white; border-bottom: 1px solid #E2E8F0;
+            position: sticky; top: 0; z-index: 1000;
         }
-
-        /* Minimal TQ Circle Logo with Fancy Title */
-        .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .logo-box { display: flex; align-items: center; gap: 12px; }
         .tq-circle {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--primary-navy);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 14px;
-            position: relative;
+            width: 40px; height: 40px; border: 2px solid var(--primary-navy); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; position: relative;
         }
-        /* Circulation effect */
         .tq-circle::after {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            border: 2px solid var(--accent-blue);
-            border-radius: 50%;
-            border-top-color: transparent;
-            transform: rotate(45deg);
+            content: ''; position: absolute; width: 100%; height: 100%;
+            border: 2px solid var(--accent-blue); border-radius: 50%; border-top-color: transparent; transform: rotate(45deg);
         }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic; /* 花体效果 */
-            font-size: 1.4rem;
-        }
+        .logo-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; }
 
         nav { display: flex; align-items: center; }
-
-        /* Improved Dropdown Logic */
-        .nav-item {
-            position: relative;
-            margin-left: 25px;
-            padding: 10px 0;
-        }
-
-        .nav-link {
-            text-transform: UPPERCASE; /* 全大写导航 */
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
+        .nav-item { position: relative; margin-left: 25px; padding: 10px 0; }
+        .nav-link { text-transform: UPPERCASE; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; }
         .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(255,255,255,0.98);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            min-width: 230px;
-            display: none;
-            border-radius: 4px;
-            padding: 12px 0;
-            opacity: 0;
-            transition: 0.3s;
+            position: absolute; top: 100%; left: 0; background: white; border: 1px solid #E2E8F0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); min-width: 220px; display: none; border-radius: 4px; padding: 10px 0;
         }
+        .dropdown a { display: block; padding: 10px 20px; font-size: 0.85rem; color: var(--text-grey); }
+        .dropdown a:hover { background: #F1F5F9; color: var(--accent-blue); }
+        .nav-item:hover .dropdown { display: block; }
 
-        .dropdown a {
-            display: block;
-            padding: 12px 20px;
-            color: var(--text-grey);
-            font-size: 0.85rem;
-            text-transform: none; /* Keep dropdown regular capitalization */
-        }
+        /* Floating Label & Right Nav */
+        .nav-right { display: flex; align-items: center; gap: 20px; border-left: 1px solid #E2E8F0; padding-left: 25px; margin-left: 25px; }
+        .floating-label { font-size: 0.7rem; background: var(--accent-blue); color: white; padding: 4px 10px; border-radius: 20px; font-weight: 600; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
 
-        .dropdown a:hover {
-            background: #F1F5F9;
-            color: var(--accent-blue);
-        }
-
-        .nav-item:hover .dropdown {
-            display: block;
-            opacity: 1;
-            transform: translateY(3px);
-        }
-
-        /* SIGN IN & Search Icons - Advanced */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            margin-left: 40px;
-            gap: 20px;
-            border-left: 1px solid var(--border-color);
-            padding-left: 25px;
-        }
-
-        .signin-btn {
-            text-transform: UPPERCASE;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-blue);
-        }
-
-        .search-icon {
-            cursor: pointer;
-            font-size: 1.1rem;
-            color: var(--primary-navy);
-        }
-
-        /* ================= Hero Section (Image & Slogan) ================= */
+        /* --- 2. Hero Section --- */
         .hero {
-            padding: 180px 20px;
-            text-align: center;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
-                              url('tq-bg.jpg'); /* 请确保图片已上传至GitHub并命名一致 */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            padding: 150px 20px; text-align: center;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('tq-bg.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
         }
+        .hero h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; font-weight: 500; color: var(--primary-navy); }
+        .bid-badge { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--text-grey); margin-bottom: 20px; display: block; letter-spacing: 2px; }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic; /* 赋予口号独特感 */
-            font-size: 3.8rem;
-            margin-bottom: 25px;
-            letter-spacing: -1px;
-            text-shadow: 0 2px 10px rgba(255,255,255,0.5);
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--primary-navy);
-            max-width: 800px;
-            margin: 0 auto 45px;
-            font-weight: 500;
-        }
-
-        .cta-group .btn {
-            padding: 16px 35px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-transform: UPPERCASE;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            display: inline-block;
-            margin: 0 10px;
-        }
-
+        .btn { padding: 15px 35px; border-radius: 4px; font-weight: 600; text-transform: UPPERCASE; font-size: 0.85rem; letter-spacing: 1px; display: inline-block; transition: 0.3s; margin: 0 10px; cursor: pointer; border: none; }
         .btn-blue { background: var(--accent-blue); color: white; }
-        .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4); }
-
         .btn-white { background: white; color: var(--accent-blue); border: 1px solid var(--accent-blue); }
 
-        /* ================= New: Partner Trust Bar (Bristol BID) ================= */
-        .partner-bar {
-            background: white;
-            padding: 50px 0;
-            border-bottom: 1px solid var(--border-color);
-            text-align: center;
-        }
+        /* --- 3. Interactive Quiz Section --- */
+        .quiz-section { padding: 80px 50px; background: white; text-align: center; }
+        .quiz-container { max-width: 600px; margin: 0 auto; padding: 40px; border: 1px solid #E2E8F0; border-radius: 12px; background: #F9FAFB; }
+        .quiz-option { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; text-align: left; font-size: 0.95rem; }
+        .quiz-result { margin-top: 25px; display: none; padding: 15px; border-radius: 6px; background: #EBFBF5; color: var(--success-green); font-weight: 600; }
 
-        .partner-label {
-            font-size: 0.8rem;
-            color: var(--text-grey);
-            text-transform: UPPERCASE;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
+        /* --- 4. Funding Gateway (The Paths) --- */
+        .funding-gateway { padding: 100px 50px; display: none; scroll-behavior: smooth; }
+        .social-contract { background: #E3F2FD; padding: 40px; border-radius: 12px; margin-bottom: 50px; text-align: center; border: 2px dashed var(--accent-blue); }
+        .gateway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; }
+        .path-card { background: white; padding: 40px; border-radius: 12px; border: 1px solid #E2E8F0; opacity: 0.5; pointer-events: none; transition: 0.3s; }
+        .active-path { opacity: 1; pointer-events: all; border-color: var(--accent-blue); }
 
-        .logo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        /* --- 5. Modal / Video Popup --- */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(26, 43, 60, 0.9); }
+        .modal-content { background: white; margin: 10% auto; padding: 40px; width: 60%; border-radius: 8px; text-align: center; }
 
-        .logo-item {
-            display: flex;
-            justify-content: center;
-            opacity: 0.6;
-            transition: 0.3s;
-        }
-        .logo-item:hover { opacity: 1; transform: scale(1.03); }
+        /* --- 6. Governance & Footer --- */
+        .governance-note { text-align: center; padding: 40px; background: #EEF2F7; font-weight: 600; color: var(--text-grey); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        footer { padding: 60px 50px; text-align: center; background: white; border-top: 1px solid #E2E8F0; }
 
-        /* IMPORTANT: Replace with actual partner logo images in your GitHub */
-        .partner-logo { max-width: 140px; height: auto; }
-
-        /* ================= New: Dynamic Impact Showacase (Stats) ================= */
-        .impact-showcase {
-            padding: 100px 50px;
-            background-color: var(--soft-grey-bg);
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--primary-navy);
-            margin-bottom: 60px;
-        }
-
-        .counter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .counter-card {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: 0.3s;
-        }
-        .counter-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-            border-color: var(--accent-blue);
-        }
-
-        .counter-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: var(--accent-blue);
-            font-weight: 700;
-            margin: 10px 0;
-            transition: color 0.3s;
-        }
-
-        .counter-label {
-            font-size: 0.9rem;
-            color: var(--text-grey);
-            text-transform: UPPERCASE;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            header { padding: 15px 20px; }
-            nav { display: none; } /* Mobile Menu Placeholder */
-        }
     </style>
 </head>
 <body>
@@ -296,100 +95,131 @@
             <div class="tq-circle">TQ</div>
             <div class="logo-text">Temple Quarter Wealth Hub</div>
         </a>
-
         <nav>
             <div class="nav-item">
-                <a href="#" class="nav-link">About</a>
+                <span class="nav-link">About</span>
                 <div class="dropdown">
-                    <a href="#">What is TQ Wealth Hub?</a>
+                    <a href="javascript:void(0)" onclick="openModal()">What is TQ Wealth Hub?</a>
                     <a href="#">Our Story</a>
                     <a href="#">VCSE Funding</a>
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link">Impact</a>
+                <span class="nav-link">Impact</span>
                 <div class="dropdown">
                     <a href="#">Social Impact</a>
-                    <a href="#">Environmental Impact</a>
+                    <a href="#">Environmental</a>
                     <a href="#">Economic Impact</a>
                     <a href="#">Support & Wellbeing</a>
                 </div>
             </div>
-            <a href="#" class="nav-link" style="margin-left:25px;">Opportunities</a>
-
             <div class="nav-right">
-                <a href="#" class="signin-btn">SIGN IN</a>
-                <div class="search-icon">🔍</div>
+                <span class="floating-label">Join the Circular Economy</span>
+                <a href="#" class="nav-link" style="color: var(--accent-blue);">SIGN IN</a>
+                <span>🔍</span>
             </div>
         </nav>
     </header>
 
     <section class="hero">
+        <span class="bid-badge">Powered by Community, Anchored by Bristol BID</span>
         <h1>Keep Wealth Local. Build Community Power.</h1>
-        <p>In partnership with Bristol BID, we are anchoring capital within our city to fuel a self-sustaining local economy and lasting prosperity for Temple Quarter.</p>
-        
+        <p>Bristol’s first Wealth Hub dedicated to Generative Organisations and VCSEs. We anchor wealth in Temple Quarter to create a self-sustaining local economy owned by you.</p>
         <div class="cta-group">
-            <a href="#" class="btn btn-blue">Explore Funding</a>
-            <a href="#" class="btn btn-blue">Apply Now</a>
-            <a href="#" class="btn btn-white">Community Hub</a>
+            <button class="btn btn-blue" onclick="scrollToFunding()">Explore Funding</button>
+            <button class="btn btn-white">Community Hub</button>
         </div>
     </section>
 
-    <section class="partner-bar">
-        <p class="partner-label">Key Local Anchors & Partners</p>
-        <div class="logo-grid">
-            <div class="logo-item"><img src="logo-bristol-bid.png" alt="Bristol BID" class="partner-logo"></div>
-            <div class="logo-item"><img src="logo-uob.png" alt="University of Bristol" class="partner-logo"></div>
-            <div class="logo-item"><img src="logo-engine-shed.png" alt="Engine Shed" class="partner-logo"></div>
-            <div class="logo-item"><img src="logo-vcse.png" alt="VCSE Sector Partner" class="partner-logo"></div>
+    <section class="quiz-section">
+        <div class="quiz-container">
+            <h2 style="font-family: 'Playfair Display', serif;">Is your organisation Generative?</h2>
+            <p style="color: var(--text-grey); font-size: 0.9rem; margin-bottom: 30px;">Quick check for local economic eligibility</p>
+            <div class="quiz-option"><input type="checkbox" class="quiz-check"> Owned by TQ Resident / Local Workers?</div>
+            <div class="quiz-option"><input type="checkbox" class="quiz-check"> 75%+ Local Employment within Bristol?</div>
+            <div class="quiz-option"><input type="checkbox" class="quiz-check"> Committed to Real Living Wage?</div>
+            <div class="quiz-option"><input type="checkbox" class="quiz-check"> Profits reinvested locally?</div>
+            <div id="quizResult" class="quiz-result">You belong here! You are a Generative Champion.</div>
         </div>
     </section>
 
-    <section class="impact-showcase">
-        <h2 class="section-title">Fueling Bristol's Local Growth</h2>
-        <div class="counter-grid">
-            <div class="counter-card">
-                <p class="counter-label">Total Capital Invested Locally</p>
-                <p class="counter-value" data-target="12.5" data-prefix="£" data-suffix="M">0</p>
+    <div class="governance-note">
+        “Run by the community, for the community. Decision power stays in TQ.”
+    </div>
+
+    <section id="funding-gateway" class="funding-gateway">
+        <div class="social-contract">
+            <h2 style="font-family: 'Playfair Display', serif;">The TQ Social Contract</h2>
+            <p style="font-weight: 600; font-size: 1.1rem;">"Funding is a cycle. Reinvest 50% within 5 years to keep Temple Quarter growing."</p>
+            <p style="font-size: 0.85rem; color: var(--text-grey); margin-bottom: 25px;">Membership is free, but our social contract ensures wealth circulates forever.</p>
+            <label style="cursor: pointer; color: var(--accent-blue); font-weight: 700;">
+                <input type="checkbox" id="contractCheck" onchange="activatePaths()"> I UNDERSTAND AND COMMIT TO THE SOCIAL CONTRACT
+            </label>
+        </div>
+
+        <div class="gateway-grid">
+            <div class="path-card" id="bizCard">
+                <h3>Generative Businesses</h3>
+                <p>Focus on local ownership, high employment, and surplus sharing.</p>
+                <button class="btn btn-blue" style="width: 100%; margin: 20px 0;">Apply Now</button>
             </div>
-            <div class="counter-card">
-                <p class="counter-label">Successful Projects Funded</p>
-                <p class="counter-value" data-target="48" data-suffix="+">0</p>
-            </div>
-            <div class="counter-card">
-                <p class="counter-label">Bristol Businesses Supported</p>
-                <p class="counter-value" data-target="124" data-suffix="+">0</p>
+            <div class="path-card" id="vcseCard">
+                <h3>VCSEs (Community Capital)</h3>
+                <p>Focus on social value, environment, and holistic community wellbeing.</p>
+                <button class="btn btn-blue" style="width: 100%; margin: 20px 0;">Apply Now</button>
             </div>
         </div>
     </section>
+
+    <section style="padding: 80px 50px; text-align: center; background: white;">
+        <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 40px;">Fueling Bristol's Local Growth</h2>
+        <div style="font-size: 1.2rem; font-weight: 600; color: var(--accent-blue); border: 1px solid var(--accent-blue); display: inline-block; padding: 15px 30px; border-radius: 8px;">
+            Next community vote starts in <span id="countdown">24</span> days
+        </div>
+    </section>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <h2 style="font-family: 'Playfair Display', serif;">The Generative Economy Explained</h2>
+            <p>Imagine a Bristol where wealth doesn't leak out, but circles within.</p>
+            <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+                [ Video / Infographic Placeholder ]
+            </div>
+            <button class="btn btn-blue" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Temple Quarter Wealth Hub | Anchored by Bristol BID</p>
+    </footer>
 
     <script>
-        const counters = document.querySelectorAll('.counter-value');
-        const speed = 200; // The lower the slower
+        // 1. Quiz Logic
+        const checks = document.querySelectorAll('.quiz-check');
+        checks.forEach(c => c.addEventListener('change', () => {
+            const checkedCount = document.querySelectorAll('.quiz-check:checked').length;
+            document.getElementById('quizResult').style.display = checkedCount >= 3 ? 'block' : 'none';
+        }));
 
-        counters.forEach(counter => {
-            const animate = () => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const prefix = counter.getAttribute('data-prefix') || '';
-                const suffix = counter.getAttribute('data-suffix') || '';
+        // 2. Funding Gateway Logic
+        function scrollToFunding() {
+            document.getElementById('funding-gateway').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('funding-gateway').offsetTop - 100, behavior: 'smooth' });
+        }
 
-                // Lower speed the smaller the number is
-                const step = target / speed;
+        function activatePaths() {
+            const isChecked = document.getElementById('contractCheck').checked;
+            const cards = [document.getElementById('bizCard'), document.getElementById('vcseCard')];
+            cards.forEach(card => isChecked ? card.classList.add('active-path') : card.classList.remove('active-path'));
+        }
 
-                if (count < target) {
-                    // Update the innerText
-                    counter.innerText = prefix + Math.ceil(count + step) + suffix;
-                    // Add slight delay for smoothness
-                    setTimeout(animate, 20);
-                } else {
-                    counter.innerText = prefix + target + suffix;
-                }
-            }
+        // 3. Modal Logic
+        function openModal() { document.getElementById('videoModal').style.display = 'block'; }
+        function closeModal() { document.getElementById('videoModal').style.display = 'none'; }
 
-            animate();
-        });
+        // 4. Countdown Logic
+        let days = 24;
+        setInterval(() => { /* Simple display logic */ }, 1000);
     </script>
-
 </body>
 </html>
