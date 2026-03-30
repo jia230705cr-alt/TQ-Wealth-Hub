@@ -1,53 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Funding | TQ Wealth Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
     <style>
-        /* 页面特有样式 */
-        .apply-container { max-width: 800px; margin: 60px auto; padding: 40px; background: white; border: 1px solid var(--border-color); border-radius: 12px; }
-        .step-indicator { display: flex; gap: 20px; margin-bottom: 40px; border-bottom: 1px solid #F1F5F9; padding-bottom: 20px; }
-        .step { font-size: 0.8rem; font-weight: 600; color: var(--text-grey); display: flex; align-items: center; gap: 8px; }
-        .step.active { color: var(--accent-blue); }
+        :root {
+            --accent-blue: #4A90E2;
+            --primary-navy: #1A2B3C;
+            --text-grey: #64748B;
+            --soft-grey-bg: #F8FAFC;
+            --border-color: #E2E8F0;
+            --success-green: #38A169;
+        }
+
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--soft-grey-bg); color: var(--primary-navy); }
         
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
-        .form-control { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; }
+        /* 复用首页 Header 样式 */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: white; border-bottom: 1px solid var(--border-color); }
+        .logo-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; text-decoration: none; color: inherit; }
+
+        /* 申请页布局 */
+        .apply-wrapper { max-width: 900px; margin: 40px auto; padding: 20px; }
         
-        .contract-box { background: #F0F7FF; padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-blue); margin: 30px 0; }
+        /* 进度条设计 */
+        .progress-container { display: flex; justify-content: space-between; margin-bottom: 40px; position: relative; }
+        .progress-container::before { content: ''; background: var(--border-color); height: 2px; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); z-index: 1; }
+        .step-node { background: white; border: 2px solid var(--border-color); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; z-index: 2; position: relative; transition: 0.3s; }
+        .step-node.active { border-color: var(--accent-blue); color: var(--accent-blue); box-shadow: 0 0 10px rgba(74, 144, 226, 0.2); }
+        .step-label { position: absolute; top: 45px; font-size: 0.75rem; white-space: nowrap; color: var(--text-grey); font-weight: 600; }
+
+        /* 表单卡片 */
+        .form-card { background: white; border-radius: 12px; border: 1px solid var(--border-color); padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .form-section { margin-bottom: 30px; }
+        .form-section h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px; border-left: 4px solid var(--accent-blue); padding-left: 15px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--primary-navy); }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit; font-size: 0.9rem; box-sizing: border-box; transition: 0.3s; }
+        input:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1); }
+
+        /* 核心特色：社会契约区域 */
+        .contract-highlight { background: #F0F9FF; border: 1px dashed var(--accent-blue); padding: 25px; border-radius: 8px; margin: 30px 0; }
+        .contract-highlight h4 { margin-top: 0; color: var(--accent-blue); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+
+        .btn-submit { background: var(--primary-navy); color: white; border: none; padding: 15px 40px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%; font-size: 1rem; }
+        .btn-submit:hover { background: #2c3e50; transform: translateY(-2px); }
+        
+        .help-text { font-size: 0.75rem; color: var(--text-grey); margin-top: 5px; }
     </style>
 </head>
 <body>
-    <div class="apply-container">
-        <div class="step-indicator">
-            <div class="step active"><span>01</span> Eligibility</div>
-            <div class="step"><span>02</span> Project Details</div>
-            <div class="step"><span>03</span> Social Contract</div>
+
+    <header>
+        <a href="index.html" class="logo-text">Temple Quarter Wealth Hub</a>
+        <div style="font-size: 0.8rem; color: var(--text-grey);">Application Gateway v1.2</div>
+    </header>
+
+    <div class="apply-wrapper">
+        <div class="progress-container">
+            <div class="step-node active">1<span class="step-label">Eligibility</span></div>
+            <div class="step-node">2<span class="step-label">Project Details</span></div>
+            <div class="step-node">3<span class="step-label">Impact Review</span></div>
+            <div class="step-node">4<span class="step-label">Social Contract</span></div>
         </div>
 
-        <h1 style="font-family: 'Playfair Display', serif;">Funding Application</h1>
-        <p style="color: var(--text-grey);">Submit your Letter of Intent for the 2026 Spring Funding Cycle.</p>
+        <div class="form-card">
+            <form id="applyForm" onsubmit="return handleSubmit(event)">
+                
+                <section class="form-section">
+                    <h3>01. Identity & Eligibility</h3>
+                    <div class="form-group">
+                        <label>Organisation Name</label>
+                        <input type="text" placeholder="e.g. BS2 Community Workshop" required>
+                    </div>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Registration Type</label>
+                            <select>
+                                <option>CIC (Social Enterprise)</option>
+                                <option>Charity / VCSE</option>
+                                <option>Co-operative</option>
+                                <option>Sole Trader (Generative)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Primary Postcode</label>
+                            <input type="text" placeholder="e.g. BS2 0HS" required>
+                            <p class="help-text">Must be within the Temple Quarter boundary.</p>
+                        </div>
+                    </div>
+                </section>
 
-        <form>
-            <section class="form-section">
-                <div class="form-group">
-                    <label>Organisation Name</label>
-                    <input type="text" class="form-control" placeholder="e.g. Totterdown Community Cafe">
-                </div>
-                <div class="form-group">
-                    <label>Postcode of Operation</label>
-                    <input type="text" class="form-control" placeholder="BS2 or BS3 preferred">
-                </div>
-            </section>
+                <section class="form-section">
+                    <h3>02. Project Proposal</h3>
+                    <div class="form-group">
+                        <label>Funding Amount Requested (£)</label>
+                        <input type="number" placeholder="5000" min="500" max="100000">
+                    </div>
+                    <div class="form-group">
+                        <label>Briefly describe how this funding will anchor wealth in Bristol</label>
+                        <textarea rows="4" placeholder="How will you use local suppliers or create local jobs?"></textarea>
+                    </div>
+                </section>
 
-            <div class="contract-box">
-                <h4 style="margin-top:0;">The Generative Commitment</h4>
-                <p style="font-size: 0.85rem;">By applying, you acknowledge that our funding is <strong>generative</strong>. This means if successful, you commit to mentoring one other local startup and prioritizing local suppliers.</p>
-                <label style="font-size: 0.85rem; font-weight: 600;">
-                    <input type="checkbox"> I understand and align with the TQ Social Contract.
-                </label>
-            </div>
+                <section class="contract-highlight">
+                    <h4>The Generative Social Contract</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.5;">If funded, I agree to <strong>reinvest 50%</strong> of surplus profits back into the TQ Community Fund after 5 years, and will prioritize <strong>local procurement</strong> for all project needs.</p>
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" style="width: auto; margin-top: 4px;" required>
+                        <span>I accept the TQ Social Contract and commit to the generative economy principles.</span>
+                    </label>
+                </section>
 
-            <button type="submit" class="btn btn-blue" style="width:100%; padding:15px;">Submit Initial Inquiry</button>
-        </form>
+                <button type="submit" class="btn-submit">Submit Initial Application</button>
+            </form>
+        </div>
+
+        <p style="text-align: center; color: var(--text-grey); font-size: 0.8rem; margin-top: 30px;">
+            Need help? Contact <a href="#" style="color: var(--accent-blue); text-decoration: underline;">support@tqwealthhub.org</a>
+        </p>
     </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert("Thank you! Your initial application has been received. Our community board will review it within 14 days.");
+            window.location.href = "index.html";
+        }
+    </script>
+
 </body>
 </html>
