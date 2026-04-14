@@ -168,7 +168,51 @@
             background: rgba(26, 43, 60, 0.95); z-index: 2000; align-items: center; justify-content: center;
         }
         .modal-body { background: white; padding: 50px; border-radius: 12px; max-width: 600px; text-align: center; color: var(--primary-navy); }
+.regenerate-section {
+    background-color: var(--primary-navy); /* 深色背景，显得正式且有分量 */
+    color: white;
+    padding: 100px 50px;
+    text-align: center;
+}
 
+.regen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1100px;
+    margin: 50px auto 0;
+}
+
+.regen-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.regen-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.regen-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.regen-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--accent-blue);
+}
+
+.regen-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
          footer {
     background: var(--primary-navy);
     color: white;
@@ -356,30 +400,34 @@
     </script>
 
 
-<section style="background: white; padding: 80px 50px; border-top: 1px solid var(--border-color);">
-    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-        <div>
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px;">The Circular Gift</h2>
-            <p style="color: var(--text-grey); font-size: 1.1rem; line-height: 1.8;">
-                Every pound invested in Temple Quarter is designed to return. Through our <strong>Social Give-back</strong> model, funded organisations contribute 5% of their growth back into community projects, ensuring Bristol's wealth stays in Bristol.
-            </p>
-            <div style="margin-top: 30px;">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                    <span style="color: var(--accent-blue); font-weight: bold; font-size: 1.2rem;">✓</span>
-                    <span>Reinvesting in local youth mentorship</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <span style="color: var(--accent-blue); font-weight: bold; font-size: 1.2rem;">✓</span>
-                    <span>Supporting zero-carbon infrastructure</span>
-                </div>
-            </div>
+<section class="regenerate-section">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <span style="color: var(--accent-blue); text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;">Giving back, building forward</span>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-top: 15px;">REINVEST & REGENERATE</h2>
+    </div>
+
+    <div class="regen-grid">
+        <div class="regen-card">
+            <span class="regen-icon">🌱</span>
+            <h3>Community Growth</h3>
+            <p>Your reinvestment funds vital community organisations, turning business success into local resilience.</p>
         </div>
-        <div style="background: var(--soft-grey-bg); height: 300px; border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color);">
-            <div style="text-align: center;">
-                <div style="font-size: 3rem;">♻️</div>
-                <p style="font-weight: 600; color: var(--primary-navy); margin-top: 15px;">Generative Growth Cycle</p>
-            </div>
+
+        <div class="regen-card">
+            <span class="regen-icon">🔓</span>
+            <h3>Unlock Recognition</h3>
+            <p>Your membership and structure unlocks recognition for <strong>Social Value Act</strong> procurement and further institutional funding.</p>
         </div>
+
+        <div class="regen-card">
+            <span class="regen-icon">🔄</span>
+            <h3>Regenerative Economy</h3>
+            <p>Together, members build a genuinely regenerative local economy — one where community wealth grows and stays.</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 60px;">
+        <a href="apply.html" class="btn btn-blue" style="background: white; color: var(--primary-navy); border: none;">Become a Member</a>
     </div>
 </section>
 
