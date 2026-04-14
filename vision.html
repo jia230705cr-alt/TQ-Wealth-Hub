@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Vision & Benefits | TQ Wealth Hive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-orange: #FF8C61;
+            --soft-cream: #FFF9F3;
+            --deep-clay: #4A3B33;
+            --leaf-green: #88A47C;
+            --honey-gold: #FFC069;
+            --text-grey: #6D5D55;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--deep-clay);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
+
+        header { text-align: center; margin-bottom: 80px; }
+        .logo { font-family: 'Playfair Display', serif; color: var(--warm-orange); text-decoration: none; font-size: 1.5rem; font-weight: bold; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0; }
+
+        /* 免费福利板块 */
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
+        .benefit-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-bottom: 4px solid var(--leaf-green); }
+        .benefit-card h3 { color: var(--leaf-green); margin-top: 0; }
+
+        /* Funding 专项板块 */
+        .funding-section { 
+            background: var(--deep-clay); 
+            color: white; 
+            padding: 50px; 
+            border-radius: 30px; 
+            margin-top: 60px;
+        }
+        .funding-section h2 { font-family: 'Playfair Display', serif; color: var(--honey-gold); font-size: 2rem; }
+        .criteria-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .criteria-list li { padding: 15px; background: rgba(255,255,255,0.1); border-radius: 12px; font-weight: 500; }
+        .criteria-list li::before { content: '✓ '; color: var(--honey-gold); font-weight: bold; }
+
+        .cta-box { text-align: center; margin-top: 60px; }
+        .btn { padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; }
+        .btn-warm { background: var(--warm-orange); color: white; }
+        .btn-warm:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,140,97,0.4); }
+
+        .section-tag { text-transform: uppercase; letter-spacing: 2px; color: var(--warm-orange); font-weight: bold; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="index.html" class="logo">TQ Wealth Hive</a>
+        <p class="section-tag" style="margin-top: 40px;">Member Advantage</p>
+        <h1>Small Business, Big Impact</h1>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Join a network where your growth directly nourishes our neighbourhood.</p>
+    </header>
+
+    <section>
+        <h2 style="font-family: 'Playfair Display', serif; text-align: center;">What you get for Free</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>🤝 B2B Collaboration</h3>
+                <p>Exclusive access to our monthly "Hive Mixers" to meet local suppliers and partners. Stop searching globally, start sourcing locally.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>📣 Community Exposure</h3>
+                <p>Get featured in our "Local Hero" newsletter and member directory, reaching thousands of TQ residents who want to shop ethically.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>📈 Economic Hub Tools</h3>
+                <p>Use our internal trading platform to exchange surplus stock or services with other members—reducing waste and costs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="funding-section">
+        <h2>Wealth Hive Funding</h2>
+        <p>We provide regenerative capital to businesses that go above and beyond for Temple Quarter. To be eligible for our funding rounds, you must meet the following criteria:</p>
+        
+        <ul class="criteria-list">
+            <li><strong>75%+ Local Employment</strong> (Staff living in TQ postcodes)</li>
+            <li><strong>Wealth Distribution</strong> (Commitment to fair pay gap)</li>
+            <li><strong>Local Spend First</strong> (Spending within the TQ ecosystem)</li>
+            <li><strong>Profit Sharing</strong> (Reinvesting back into the community fund)</li>
+            <li><strong>Generative Operations</strong> (Prioritizing social/eco value)</li>
+            <li><strong>Worker Empowerment</strong> (Involving staff in decisions)</li>
+        </ul>
+
+        <p style="margin-top: 30px; font-style: italic; opacity: 0.9;">
+            * Qualifying businesses can apply for grants and zero-interest loans ranging from £5,000 to £50,000.
+        </p>
+    </section>
+
+    <div class="cta-box">
+        <h3 style="font-family: 'Playfair Display', serif;">Ready to grow with us?</h3>
+        <a href="apply.html" class="btn btn-warm">Start Your Application</a>
+    </div>
+</div>
+
+<footer style="text-align: center; padding: 60px; color: var(--text-grey); font-size: 0.9rem;">
+    <a href="index.html" style="color: var(--deep-clay); text-decoration: none;">← Back to Homepage</a>
+</footer>
+
+</body>
+</html>
