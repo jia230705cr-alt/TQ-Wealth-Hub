@@ -10,9 +10,9 @@
             --warm-orange: #FF8C61;
             --soft-cream: #FFF9F3;
             --deep-clay: #4A3B33;
-            --leaf-green: #88A47C;
             --honey-gold: #FFC069;
             --text-grey: #6D5D55;
+            --white-trans: rgba(255, 255, 255, 0.95);
         }
 
         body {
@@ -24,214 +24,129 @@
             scroll-behavior: smooth;
         }
 
-        /* --- 导航栏及下拉菜单 (完全保留) --- */
+        /* --- 导航栏 --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background: rgba(255, 249, 243, 0.9);
+            background: var(--white-trans);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 140, 97, 0.1);
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            font-size: 1.5rem;
-            color: var(--warm-orange);
-            text-decoration: none;
-        }
-
+        .logo { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.5rem; color: var(--warm-orange); text-decoration: none; }
         nav { display: flex; align-items: center; }
         .nav-item { position: relative; margin-left: 30px; }
-        .nav-link {
-            text-decoration: none;
-            color: var(--deep-clay);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: 0.3s;
-            cursor: pointer;
-        }
+        .nav-link { text-decoration: none; color: var(--deep-clay); font-weight: 600; font-size: 0.95rem; transition: 0.3s; cursor: pointer; }
         .nav-link:hover { color: var(--warm-orange); }
 
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 15px 35px rgba(74, 59, 51, 0.1);
-            border-radius: 12px;
-            padding: 15px 0;
-            border: 1px solid #FFF1E6;
+        .dropdown-menu, .mega-menu {
+            display: none; position: absolute; top: 100%; background: white; 
+            box-shadow: 0 15px 40px rgba(74, 59, 51, 0.08); border-radius: 15px; padding: 20px; border: 1px solid #FFF1E6; animation: fadeIn 0.3s ease;
         }
-
-        .mega-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            width: 580px;
-            box-shadow: 0 15px 35px rgba(74, 59, 51, 0.1);
-            border-radius: 18px;
-            padding: 30px;
-            border: 1px solid #FFF1E6;
-        }
-
-        .nav-item:hover .dropdown-menu,
-        .nav-item:hover .mega-menu {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .dropdown-menu a, .mega-grid a {
-            display: block;
-            padding: 10px 20px;
-            color: var(--text-grey);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-
+        .dropdown-menu { left: 0; min-width: 200px; }
+        .mega-menu { left: 50%; transform: translateX(-50%); width: 550px; }
+        .nav-item:hover .dropdown-menu, .nav-item:hover .mega-menu { display: block; }
         .mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .menu-col h4 { 
-            color: var(--warm-orange); font-size: 0.75rem; text-transform: uppercase; 
-            margin: 0 0 10px 0; letter-spacing: 1px; border-bottom: 1px solid #FDF5ED;
-        }
+        .menu-col h4 { color: var(--warm-orange); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid #FDF5ED; }
+        .dropdown-menu a, .mega-grid a { display: block; padding: 8px 0; color: var(--text-grey); text-decoration: none; font-size: 0.9rem; }
+        .dropdown-menu a:hover, .mega-grid a:hover { color: var(--warm-orange); }
 
-        /* --- Hero Section (加入登录框，保持背景图一致) --- */
+        /* --- Hero (加入左右布局和登录框) --- */
         .hero {
-            position: relative;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* 左右分布布局 */
+            height: 90vh; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 10%;
             background: linear-gradient(rgba(74, 59, 51, 0.4), rgba(74, 59, 51, 0.4)), 
                         url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 0 10%;
+            background-size: cover; background-position: center; color: white;
         }
+        .hero-content { flex: 1; text-align: left; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 40px; }
 
-        .hero-content { flex: 1; text-align: left; padding-right: 50px; }
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        /* 新增：常驻登录框 */
-        .login-box {
+        /* 常驻登录框样式 */
+        .hero-login-card {
             background: rgba(255, 255, 255, 0.98);
             padding: 40px;
             border-radius: 25px;
-            width: 100%;
-            max-width: 380px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            width: 360px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
             color: var(--deep-clay);
-            animation: fadeIn 0.8s ease;
+            margin-left: 50px;
+            animation: fadeIn 0.8s ease-out;
         }
-        .login-box h2 { font-family: 'Playfair Display', serif; margin-bottom: 10px; font-size: 1.8rem; }
-        .login-box input {
-            width: 100%; padding: 12px; margin-bottom: 15px;
-            border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box;
-            font-family: inherit;
+        .hero-login-card h2 { font-family: 'Playfair Display', serif; margin-bottom: 10px; color: var(--deep-clay); }
+        .hero-login-card p { color: var(--text-grey); font-size: 0.9rem; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group input { 
+            width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #ddd; 
+            font-family: 'Quicksand', sans-serif; box-sizing: border-box;
         }
-        .btn-login {
-            width: 100%; padding: 15px; border-radius: 50px; background: var(--warm-orange);
-            color: white; border: none; font-weight: 700; cursor: pointer;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .btn-login { 
+            width: 100%; padding: 14px; border-radius: 50px; border: none; 
+            background: var(--warm-orange); color: white; font-weight: 700; cursor: pointer;
+            transition: 0.3s; margin-top: 10px;
         }
-        .btn-login:hover { transform: scale(1.05); background: #e67e56; }
+        .btn-login:hover { background: #ff7645; transform: scale(1.02); }
 
+        /* --- 呼吸效果按钮 --- */
         .btn-group { display: flex; gap: 20px; }
-        .btn { padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.4s; font-size: 1rem; }
-        
-        .btn-warm { 
-            background: var(--warm-orange); 
-            color: white; 
-            border: 2px solid var(--warm-orange); 
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .btn-warm:hover { 
-            transform: scale(1.1); 
-            box-shadow: 0 10px 25px rgba(255, 140, 97, 0.4);
-            background: #e67e56;
-        }
-
+        .btn { padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.5s ease-in-out; }
+        .btn-warm { background: var(--warm-orange); color: white; box-shadow: 0 4px 15px rgba(255, 140, 97, 0.3); }
+        .btn-warm:hover { transform: scale(1.08); box-shadow: 0 10px 25px rgba(255, 140, 97, 0.5); background-color: #ff9b75; }
         .btn-outline { border: 2px solid white; color: white; }
-        .btn-outline:hover { background: white; color: var(--deep-clay); }
+        .btn-outline:hover { background: white; color: var(--deep-clay); transform: translateY(-3px); }
 
-        /* --- Section 通用 (保留你的美化效果) --- */
-        section { padding: 100px 10%; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; margin-bottom: 60px; }
-
-        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .vision-box { 
-            background: white; 
-            padding: 50px 40px; 
-            border-radius: 30px; 
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(74, 59, 51, 0.05); 
-            transition: 0.4s;
+        /* --- Vision Section --- */
+        section { padding: 120px 10%; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; text-align: center; margin-bottom: 60px; }
+        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .vision-box {
+            background: white; padding: 50px 40px; border-radius: 30px; text-align: center;
+            transition: 0.4s; position: relative; border: 1px solid rgba(255, 188, 105, 0.1);
+            box-shadow: 0 20px 40px rgba(74, 59, 51, 0.03);
         }
-        .vision-box:hover { transform: translateY(-10px); }
-        .vision-box i { font-size: 3rem; margin-bottom: 25px; display: block; background: #FFF5EE; width: 80px; height: 80px; line-height: 80px; border-radius: 50%; margin: 0 auto 20px; }
+        .vision-box:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(255, 140, 97, 0.1); }
+        .vision-box i { font-size: 3rem; display: inline-block; margin-bottom: 25px; background: #FFF5EE; width: 80px; height: 80px; line-height: 80px; border-radius: 50%; }
 
-        .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .join-card { background: #fff; padding: 40px; border-radius: 20px; border: 1px solid #f1ece7; }
-        .join-card h3 { color: var(--warm-orange); font-family: 'Playfair Display', serif; font-size: 1.8rem; }
-        
-        .point-list { list-style: none; padding: 0; }
-        .point-list li { margin-bottom: 12px; padding-left: 30px; position: relative; font-size: 0.95rem; line-height: 1.5; }
-        .point-list li::before { content: '🐝'; position: absolute; left: 0; top: 2px; }
+        /* --- How It Works --- */
+        .how-wrapper { display: flex; justify-content: space-between; position: relative; gap: 20px; margin-top: 40px; }
+        .how-card { background: white; padding: 30px; border-radius: 20px; flex: 1; text-align: center; border: 1px solid #FFF1E6; transition: 0.3s; }
+        .how-card:hover { border-color: var(--warm-orange); background: #fffcf9; }
+        .how-card h4 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--warm-orange); margin: 15px 0; }
+        .how-card p { font-size: 0.85rem; line-height: 1.6; color: var(--text-grey); }
+        .step-tag { display: inline-block; background: var(--honey-gold); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; }
 
-        .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .how-step { 
-            text-align: center; 
-            padding: 30px 20px; 
-            background: white;
-            border-radius: 20px;
-            border: 1px solid #FFF1E6;
-            transition: 0.3s;
-        }
-        .how-step:hover { border-color: var(--warm-orange); }
-        .step-num { width: 50px; height: 50px; background: var(--honey-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; font-size: 1.2rem; }
-
-        .stats-bar { background: var(--deep-clay); color: white; padding: 80px 0; text-align: center; }
-        .stats-container { display: flex; justify-content: space-around; max-width: 1200px; margin: 0 auto 40px; }
-        .stat-item h2 { font-size: 3.5rem; margin: 0; color: var(--warm-orange); font-family: 'Playfair Display', serif; }
-        .vote-countdown {
+        /* --- Stats & Countdown --- */
+        .stats-section { background: var(--deep-clay); color: white; padding: 80px 10%; text-align: center; }
+        .stats-grid { display: flex; justify-content: space-around; margin-bottom: 50px; }
+        .stat-item h2 { font-size: 3.5rem; color: var(--warm-orange); margin: 0; font-family: 'Playfair Display', serif; }
+        .stat-item p { font-size: 1rem; opacity: 0.8; margin-top: 10px; }
+        .vote-alert {
             display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.05);
             padding: 15px 40px; border-radius: 50px; border: 1px solid rgba(255, 188, 105, 0.2);
-            color: var(--honey-gold); font-size: 1.1rem;
+            font-weight: 600; color: var(--honey-gold); font-size: 1.1rem;
         }
 
-        footer { background: #FDF5ED; padding: 80px 10%; border-top: 1px solid #eee; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 60px; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 响应式适配 */
+        @media (max-width: 968px) {
+            .hero { flex-direction: column; text-align: center; height: auto; padding: 100px 5%; }
+            .hero-content { margin-bottom: 50px; }
+            .hero-login-card { margin-left: 0; width: 100%; box-sizing: border-box; }
+            .btn-group { justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">TQ Wealth Hive</a>
+        <a href="index.html" class="logo">TQ Wealth Hive</a>
         <nav>
             <div class="nav-item">
                 <span class="nav-link">About</span>
@@ -247,31 +162,21 @@
                 <div class="mega-menu">
                     <div class="mega-grid">
                         <div class="menu-col">
-                            <h4>Social</h4>
-                            <a href="#">Community Ties</a>
-                            <a href="#">Local Equity</a>
+                            <h4>Community</h4>
+                            <a href="#">Social Capital</a>
+                            <a href="#">Support & Wellbeing</a>
                         </div>
                         <div class="menu-col">
-                            <h4>Environmental</h4>
-                            <a href="#">Green Spaces</a>
-                            <a href="#">Net Zero TQ</a>
-                        </div>
-                        <div class="menu-col">
-                            <h4>Economic</h4>
-                            <a href="#">Wealth Anchor</a>
-                            <a href="#">Living Wage</a>
-                        </div>
-                        <div class="menu-col">
-                            <h4>Wellbeing</h4>
-                            <a href="#">Mental Health</a>
-                            <a href="#">Mentorship</a>
+                            <h4>Economy</h4>
+                            <a href="#">Generative Business</a>
+                            <a href="#">Economic Resilience</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <a href="#events" class="nav-item nav-link" style="margin-left:30px;">Events</a>
-            <a href="#funding" class="nav-item nav-link" style="margin-left:30px;">Opportunities</a>
-            <a href="community-hub.html" class="nav-item nav-link" style="margin-left:30px;">Community</a>
+            <a href="#" class="nav-item nav-link">Events</a>
+            <a href="#" class="nav-item nav-link">Opportunities</a>
+            <a href="#" class="nav-item nav-link">Community Hub</a>
         </nav>
     </header>
 
@@ -280,20 +185,26 @@
             <h1>TQ Wealth Hive</h1>
             <p>Connecting and funding generative local businesses and community organisations to build a thriving, inclusive, and happy neighbourhood.</p>
             <div class="btn-group">
-                <a href="#join" class="btn btn-warm">Join Our Hive</a>
-                <a href="#vision" class="btn btn-outline">Learn More</a>
+                <a href="#" class="btn btn-warm">Join Our Hive</a>
+                <a href="#vision" class="btn btn-outline">Our Vision</a>
             </div>
         </div>
 
-        <div class="login-box">
+        <div class="hero-login-card">
             <h2>Member Login</h2>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Access your Hive dashboard and local network.</p>
-            <form id="heroLoginForm">
-                <input type="email" placeholder="Email Address" required>
-                <input type="password" placeholder="Password" required>
+            <p>Access the Hive Hub and trade network.</p>
+            <form>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
                 <button type="submit" class="btn-login">Log In to Hive</button>
             </form>
-            <p style="font-size: 0.8rem; margin-top: 15px; text-align: center;">New to the Hive? <a href="#join" style="color: var(--warm-orange); text-decoration: none;">Get Started</a></p>
+            <p style="margin-top: 15px; font-size: 0.8rem;">
+                Not a member yet? <a href="#" style="color: var(--warm-orange); font-weight: bold;">Apply here</a>
+            </p>
         </div>
     </section>
 
@@ -302,112 +213,100 @@
         <div class="vision-grid">
             <div class="vision-box">
                 <i>🌿</i>
-                <p>TQ Community Hive is built on the principles of a wellbeing economy — one that measures success not just in profit, but in the health, connection, and resilience of the whole community.</p>
+                <h3 style="font-family: 'Playfair Display', serif;">Wellbeing First</h3>
+                <p>We measure success not just in profit, but in the health, connection, and resilience of our whole community.</p>
             </div>
             <div class="vision-box">
-                <i>🤝</i>
-                <p>We believe that when businesses and organisations are rooted in a place, accountable to it, and actively reinvesting in it, they become the building blocks of a genuinely thriving neighbourhood.</p>
-            </div>
-        </div>
-        <p style="text-align: center; max-width: 800px; margin: 40px auto; color: var(--text-grey); font-style: italic; line-height: 1.8;">
-            The Hive brings together generative organisations — businesses and community groups that create and circulate value locally rather than extracting it.
-        </p>
-    </section>
-
-    <section id="join" style="background: #FFFBF7;">
-        <h2 class="section-title">Who Can Join Us?</h2>
-        <div class="join-grid">
-            <div class="join-card">
-                <h3>Generative Businesses</h3>
-                <p>Locally rooted businesses that distribute value back into the community rather than extracting it.</p>
-                <ul class="point-list">
-                    <li>Be owned by a TQ resident or rooted locally</li>
-                    <li>Have a generative structure (Worker-owned, Co-op, etc.)</li>
-                    <li>Pay a Real Living Wage</li>
-                    <li>Reinvest in TQ where possible</li>
-                </ul>
-                <a href="#" class="btn btn-warm" style="display:inline-block; margin-top:20px;">Register as Business</a>
-            </div>
-            <div class="join-card">
-                <h3>Community Organisations</h3>
-                <p>VCSE organisations that build social capital and wellbeing — the glue of our neighbourhood.</p>
-                <ul class="point-list">
-                    <li>Be locally owned and run</li>
-                    <li>Aim to support the TQ community</li>
-                    <li>Wellbeing - Supporting mental & physical health</li>
-                </ul>
-                <a href="#" class="btn btn-warm" style="display:inline-block; margin-top:20px; background: var(--honey-gold); border-color: var(--honey-gold);">Join as Organisation</a>
+                <i>🏘️</i>
+                <h3 style="font-family: 'Playfair Display', serif;">Rooted Economy</h3>
+                <p>We believe businesses should be accountable to the place they call home, reinvesting in the building blocks of a thriving neighbourhood.</p>
             </div>
         </div>
     </section>
 
-    <div class="stats-bar">
-        <div class="stats-container">
+    <section style="background: #FFFBF7;">
+        <h2 class="section-title">How the Hive Works</h2>
+        <div class="how-wrapper">
+            <div class="how-card">
+                <span class="step-tag">STEP 01</span>
+                <h4>JOIN</h4>
+                <p>Free membership via a simple community promise. We support your transition to generative.</p>
+            </div>
+            <div class="how-card">
+                <span class="step-tag">STEP 02</span>
+                <h4>CONNECT</h4>
+                <p>Access the Hub to trade, partner, and gain support from community and business experts.</p>
+            </div>
+            <div class="how-card">
+                <span class="step-tag">STEP 03</span>
+                <h4>APPLY</h4>
+                <p>Monthly themed funding rounds. A panel shortlists, then the community votes on the winners.</p>
+            </div>
+            <div class="how-card">
+                <span class="step-tag">STEP 04</span>
+                <h4>REINVEST</h4>
+                <p>Surplus is reinvested to fund vital community orgs, building wealth that stays in Temple Quarter.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-section">
+        <div class="stats-grid">
             <div class="stat-item">
                 <h2 class="counter" data-target="15420">0</h2>
-                <p>Residents Supported</p>
+                <p>TQ Residents Supported</p>
             </div>
             <div class="stat-item">
                 <h2 class="counter" data-target="12.5">0</h2>
-                <p>£ Million Circulated</p>
+                <p>£ Million Local Wealth</p>
             </div>
             <div class="stat-item">
                 <h2 class="counter" data-target="450">0</h2>
-                <p>Generative Members</p>
+                <p>Hive Members</p>
             </div>
         </div>
-        <div class="vote-countdown">
-            ⌛ The next community vote starts in 14 days
+        <div class="vote-alert">
+            ⌛ <span>The next community vote starts in <strong>14 days</strong></span>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h3 style="font-family: 'Playfair Display', serif;">TQ Wealth Hive</h3>
-                <p>Building a thriving, inclusive neighbourhood.</p>
-            </div>
-            <div>
-                <h4 style="text-transform: uppercase; font-size: 0.7rem;">Contact</h4>
-                <p>📍 Temple Meads, Bristol, BS2</p>
-                <p>📧 hello@tqwealthhive.org</p>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px; font-size: 0.8rem; color: #999;">
-            © 2026 TQ Wealth Hive. Rooted in Bristol.
-        </div>
-    </footer>
-
     <script>
-        // 保持你原有的数字跑动逻辑
         const counters = document.querySelectorAll('.counter');
-        const speed = 200;
+        const speed = 100; // 跑动速度
+
         const startCounters = () => {
             counters.forEach(counter => {
                 const updateCount = () => {
                     const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
+                    const count = +counter.innerText.replace(/,/g, '').replace('M', '');
                     const inc = target / speed;
+
                     if (count < target) {
-                        counter.innerText = (count + inc).toFixed(target < 100 ? 1 : 0);
-                        setTimeout(updateCount, 1);
+                        const nextValue = count + inc;
+                        // 处理千位分隔符或小数
+                        if (target > 1000) {
+                            counter.innerText = Math.ceil(nextValue).toLocaleString();
+                        } else {
+                            counter.innerText = nextValue.toFixed(1);
+                        }
+                        setTimeout(updateCount, 15);
                     } else {
-                        counter.innerText = target + (target < 100 ? 'M' : '+');
+                        // 结束时的最终格式化
+                        if (target === 15420) counter.innerText = "15,420+";
+                        if (target === 12.5) counter.innerText = "12.5M";
+                        if (target === 450) counter.innerText = "450+";
                     }
                 };
                 updateCount();
             });
         };
 
-        // 登录框模拟跳转 (新加功能点)
-        document.getElementById('heroLoginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            window.location.href = "community-hub.html";
-        });
-
         window.addEventListener('scroll', () => {
-            const statsPos = document.querySelector('.stats-bar').getBoundingClientRect().top;
-            if(statsPos < window.innerHeight) { startCounters(); }
+            const statsSection = document.querySelector('.stats-section');
+            const statsPos = statsSection.getBoundingClientRect().top;
+            if(statsPos < window.innerHeight - 100) { 
+                startCounters(); 
+            }
         }, {once: true});
     </script>
 </body>
