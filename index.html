@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --warm-orange: #FF8C61;    /* 温暖的橙色 */
-            --soft-cream: #FFF9F3;     /* 极柔和的米白背景 */
-            --deep-clay: #4A3B33;      /* 深粘土色 */
-            --leaf-green: #88A47C;     /* 自然绿 */
-            --honey-gold: #FFC069;     /* 蜂蜜金 */
+            --warm-orange: #FF8C61;
+            --soft-cream: #FFF9F3;
+            --deep-clay: #4A3B33;
+            --leaf-green: #88A47C;
+            --honey-gold: #FFC069;
             --text-grey: #6D5D55;
         }
 
@@ -24,7 +24,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- 导航栏与下拉菜单核心修改 --- */
+        /* --- 导航栏 --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -46,9 +46,7 @@
         }
 
         nav { display: flex; align-items: center; }
-
         .nav-item { position: relative; margin-left: 30px; }
-
         .nav-link {
             text-decoration: none;
             color: var(--deep-clay);
@@ -57,10 +55,8 @@
             transition: 0.3s;
             cursor: pointer;
         }
-
         .nav-link:hover { color: var(--warm-orange); }
 
-        /* About 下拉框 */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -74,7 +70,6 @@
             border: 1px solid #FFF1E6;
         }
 
-        /* Impact Mega Menu */
         .mega-menu {
             display: none;
             position: absolute;
@@ -143,8 +138,20 @@
 
         .btn-group { display: flex; gap: 20px; justify-content: center; }
         .btn { padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.4s; font-size: 1rem; }
-        .btn-warm { background: var(--warm-orange); color: white; border: 2px solid var(--warm-orange); }
-        .btn-warm:hover { background: #e67e56; transform: translateY(-3px); }
+        
+        /* 呼吸放大效果按钮 */
+        .btn-warm { 
+            background: var(--warm-orange); 
+            color: white; 
+            border: 2px solid var(--warm-orange); 
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-warm:hover { 
+            transform: scale(1.1); 
+            box-shadow: 0 10px 25px rgba(255, 140, 97, 0.4);
+            background: #e67e56;
+        }
+
         .btn-outline { border: 2px solid white; color: white; }
         .btn-outline:hover { background: white; color: var(--deep-clay); }
 
@@ -152,9 +159,18 @@
         section { padding: 100px 10%; }
         .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; margin-bottom: 60px; }
 
+        /* 美化后的 Vision Grid */
         .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .vision-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-bottom: 5px solid var(--honey-gold); }
-        .vision-box i { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .vision-box { 
+            background: white; 
+            padding: 50px 40px; 
+            border-radius: 30px; 
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(74, 59, 51, 0.05); 
+            transition: 0.4s;
+        }
+        .vision-box:hover { transform: translateY(-10px); }
+        .vision-box i { font-size: 3rem; margin-bottom: 25px; display: block; background: #FFF5EE; width: 80px; height: 80px; line-height: 80px; border-radius: 50%; margin: 0 auto 20px; }
 
         .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .join-card { background: #fff; padding: 40px; border-radius: 20px; border: 1px solid #f1ece7; }
@@ -164,12 +180,28 @@
         .point-list li { margin-bottom: 12px; padding-left: 30px; position: relative; font-size: 0.95rem; line-height: 1.5; }
         .point-list li::before { content: '🐝'; position: absolute; left: 0; top: 2px; }
 
+        /* 美化后的 How it Works Grid */
         .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .how-step { text-align: center; padding: 20px; }
+        .how-step { 
+            text-align: center; 
+            padding: 30px 20px; 
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #FFF1E6;
+            transition: 0.3s;
+        }
+        .how-step:hover { border-color: var(--warm-orange); }
         .step-num { width: 50px; height: 50px; background: var(--honey-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; font-size: 1.2rem; }
 
-        .stats-bar { background: var(--deep-clay); color: white; padding: 60px 0; display: flex; justify-content: space-around; text-align: center; }
-        .stat-item h2 { font-size: 3.5rem; margin: 0; color: var(--warm-orange); }
+        /* 优化的 Stats Bar */
+        .stats-bar { background: var(--deep-clay); color: white; padding: 80px 0; text-align: center; }
+        .stats-container { display: flex; justify-content: space-around; max-width: 1200px; margin: 0 auto 40px; }
+        .stat-item h2 { font-size: 3.5rem; margin: 0; color: var(--warm-orange); font-family: 'Playfair Display', serif; }
+        .vote-countdown {
+            display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.05);
+            padding: 15px 40px; border-radius: 50px; border: 1px solid rgba(255, 188, 105, 0.2);
+            color: var(--honey-gold); font-size: 1.1rem;
+        }
 
         footer { background: #FDF5ED; padding: 80px 10%; border-top: 1px solid #eee; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 60px; }
@@ -240,11 +272,11 @@
         <h2 class="section-title">Our Vision</h2>
         <div class="vision-grid">
             <div class="vision-box">
-                <i>🧘‍♀️</i>
+                <i>🌿</i>
                 <p>TQ Community Hive is built on the principles of a wellbeing economy — one that measures success not just in profit, but in the health, connection, and resilience of the whole community.</p>
             </div>
             <div class="vision-box">
-                <i>🏘️</i>
+                <i>🤝</i>
                 <p>We believe that when businesses and organisations are rooted in a place, accountable to it, and actively reinvesting in it, they become the building blocks of a genuinely thriving neighbourhood.</p>
             </div>
         </div>
@@ -349,17 +381,22 @@
     </section>
 
     <div class="stats-bar">
-        <div class="stat-item">
-            <h2 class="counter" data-target="12.5">0</h2>
-            <p>£ Million Circulated</p>
+        <div class="stats-container">
+            <div class="stat-item">
+                <h2 class="counter" data-target="15420">0</h2>
+                <p>Residents Supported</p>
+            </div>
+            <div class="stat-item">
+                <h2 class="counter" data-target="12.5">0</h2>
+                <p>£ Million Circulated</p>
+            </div>
+            <div class="stat-item">
+                <h2 class="counter" data-target="450">0</h2>
+                <p>Generative Members</p>
+            </div>
         </div>
-        <div class="stat-item">
-            <h2 class="counter" data-target="450">0</h2>
-            <p>Generative Members</p>
-        </div>
-        <div class="stat-item">
-            <h2 class="counter" data-target="89">0</h2>
-            <p>Local Projects Funded</p>
+        <div class="vote-countdown">
+            ⌛ The next community vote starts in 14 days
         </div>
     </div>
 
@@ -400,7 +437,8 @@
                         counter.innerText = (count + inc).toFixed(target < 100 ? 1 : 0);
                         setTimeout(updateCount, 1);
                     } else {
-                        counter.innerText = target + (target < 100 ? 'M' : '');
+                        // 逻辑：如果是12.5这种小数，显示M；如果是大的整数，显示+
+                        counter.innerText = target + (target < 100 ? 'M' : '+');
                     }
                 };
                 updateCount();
