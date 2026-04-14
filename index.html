@@ -9,9 +9,9 @@
         :root {
             --warm-orange: #FF8C61;    /* 温暖的橙色 */
             --soft-cream: #FFF9F3;     /* 极柔和的米白背景 */
-            --deep-clay: #4A3B33;      /* 深粘土色，替代生硬的黑色 */
-            --leaf-green: #88A47C;     /* 自然绿，用于图标和点缀 */
-            --honey-gold: #FFC069;     /* 蜂蜜金，用于次要按钮 */
+            --deep-clay: #4A3B33;      /* 深粘土色 */
+            --leaf-green: #88A47C;     /* 自然绿 */
+            --honey-gold: #FFC069;     /* 蜂蜜金 */
             --text-grey: #6D5D55;
         }
 
@@ -24,7 +24,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- 导航栏 --- */
+        /* --- 导航栏与下拉菜单核心修改 --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -45,16 +45,70 @@
             text-decoration: none;
         }
 
-        nav a {
+        nav { display: flex; align-items: center; }
+
+        .nav-item { position: relative; margin-left: 30px; }
+
+        .nav-link {
             text-decoration: none;
             color: var(--deep-clay);
-            margin-left: 30px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: 0.3s;
+            cursor: pointer;
         }
 
-        nav a:hover { color: var(--warm-orange); }
+        .nav-link:hover { color: var(--warm-orange); }
+
+        /* About 下拉框 */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(74, 59, 51, 0.1);
+            border-radius: 12px;
+            padding: 15px 0;
+            border: 1px solid #FFF1E6;
+        }
+
+        /* Impact Mega Menu */
+        .mega-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            width: 580px;
+            box-shadow: 0 15px 35px rgba(74, 59, 51, 0.1);
+            border-radius: 18px;
+            padding: 30px;
+            border: 1px solid #FFF1E6;
+        }
+
+        .nav-item:hover .dropdown-menu,
+        .nav-item:hover .mega-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-menu a, .mega-grid a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-grey);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .menu-col h4 { 
+            color: var(--warm-orange); font-size: 0.75rem; text-transform: uppercase; 
+            margin: 0 0 10px 0; letter-spacing: 1px; border-bottom: 1px solid #FDF5ED;
+        }
 
         /* --- Hero Section --- */
         .hero {
@@ -65,7 +119,7 @@
             justify-content: center;
             text-align: center;
             background: linear-gradient(rgba(74, 59, 51, 0.4), rgba(74, 59, 51, 0.4)), 
-                        url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80'); /* 选用了温暖的社区协作背景图 */
+                        url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -87,117 +141,40 @@
             font-weight: 400;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.4s;
-            font-size: 1rem;
-        }
-
+        .btn-group { display: flex; gap: 20px; justify-content: center; }
+        .btn { padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.4s; font-size: 1rem; }
         .btn-warm { background: var(--warm-orange); color: white; border: 2px solid var(--warm-orange); }
         .btn-warm:hover { background: #e67e56; transform: translateY(-3px); }
         .btn-outline { border: 2px solid white; color: white; }
         .btn-outline:hover { background: white; color: var(--deep-clay); }
 
-        /* --- Section 通用样式 --- */
+        /* --- Section 通用 --- */
         section { padding: 100px 10%; }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; margin-bottom: 60px; }
 
-        /* --- Vision Section --- */
-        .vision-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: flex-start;
-        }
-        .vision-box {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border-bottom: 5px solid var(--honey-gold);
-        }
+        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .vision-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-bottom: 5px solid var(--honey-gold); }
         .vision-box i { font-size: 2.5rem; margin-bottom: 20px; display: block; }
 
-        /* --- Who Can Join --- */
-        .join-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        .join-card {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid #f1ece7;
-        }
+        .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .join-card { background: #fff; padding: 40px; border-radius: 20px; border: 1px solid #f1ece7; }
         .join-card h3 { color: var(--warm-orange); font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+        
         .point-list { list-style: none; padding: 0; }
-        .point-list li {
-            margin-bottom: 12px;
-            padding-left: 30px;
-            position: relative;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        .point-list li::before {
-            content: '🐝'; /* 使用小蜜蜂作为 point 图标 */
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
+        .point-list li { margin-bottom: 12px; padding-left: 30px; position: relative; font-size: 0.95rem; line-height: 1.5; }
+        .point-list li::before { content: '🐝'; position: absolute; left: 0; top: 2px; }
 
-        /* --- How It Works --- */
-        .how-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        .how-step {
-            text-align: center;
-            padding: 20px;
-        }
-        .step-num {
-            width: 50px; height: 50px; background: var(--honey-gold); color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-weight: 700; font-size: 1.2rem;
-        }
+        .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .how-step { text-align: center; padding: 20px; }
+        .step-num { width: 50px; height: 50px; background: var(--honey-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; font-size: 1.2rem; }
 
-        /* --- Stats 动态数据 --- */
-        .stats-bar {
-            background: var(--deep-clay);
-            color: white;
-            padding: 60px 0;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-        }
+        .stats-bar { background: var(--deep-clay); color: white; padding: 60px 0; display: flex; justify-content: space-around; text-align: center; }
         .stat-item h2 { font-size: 3.5rem; margin: 0; color: var(--warm-orange); }
 
-        /* --- Footer --- */
-        footer {
-            background: #FDF5ED;
-            padding: 80px 10%;
-            border-top: 1px solid #eee;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1.5fr;
-            gap: 60px;
-        }
+        footer { background: #FDF5ED; padding: 80px 10%; border-top: 1px solid #eee; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 60px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -205,11 +182,45 @@
     <header>
         <a href="#" class="logo">TQ Wealth Hive</a>
         <nav>
-            <a href="#about">About</a>
-            <a href="#impact">Impact</a>
-            <a href="#events">Events</a>
-            <a href="#funding">Opportunities</a>
-            <a href="community-hub.html">Community</a>
+            <div class="nav-item">
+                <span class="nav-link">About</span>
+                <div class="dropdown-menu">
+                    <a href="#">Our Story</a>
+                    <a href="#">Governance Board</a>
+                    <a href="#">📊 Annual Report 2025</a>
+                    <a href="#">📍 Impact Map</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <span class="nav-link">Impact</span>
+                <div class="mega-menu">
+                    <div class="mega-grid">
+                        <div class="menu-col">
+                            <h4>Social</h4>
+                            <a href="#">Community Ties</a>
+                            <a href="#">Local Equity</a>
+                        </div>
+                        <div class="menu-col">
+                            <h4>Environmental</h4>
+                            <a href="#">Green Spaces</a>
+                            <a href="#">Net Zero TQ</a>
+                        </div>
+                        <div class="menu-col">
+                            <h4>Economic</h4>
+                            <a href="#">Wealth Anchor</a>
+                            <a href="#">Living Wage</a>
+                        </div>
+                        <div class="menu-col">
+                            <h4>Wellbeing</h4>
+                            <a href="#">Mental Health</a>
+                            <a href="#">Mentorship</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#events" class="nav-item nav-link" style="margin-left:30px;">Events</a>
+            <a href="#funding" class="nav-item nav-link" style="margin-left:30px;">Opportunities</a>
+            <a href="community-hub.html" class="nav-item nav-link" style="margin-left:30px;">Community</a>
         </nav>
     </header>
 
@@ -234,11 +245,11 @@
             </div>
             <div class="vision-box">
                 <i>🏘️</i>
-                <p>We believe that when businesses and organisations are rooted in a place, accountable to it, and actively reinvesting in it, they become the building blocks of a thriving neighbourhood.</p>
+                <p>We believe that when businesses and organisations are rooted in a place, accountable to it, and actively reinvesting in it, they become the building blocks of a genuinely thriving neighbourhood.</p>
             </div>
         </div>
-        <p style="text-align: center; max-width: 800px; margin: 40px auto; color: var(--text-grey); font-style: italic;">
-            "The Hive brings together generative organisations to form a living ecosystem... helping grow a local economy that works for everyone."
+        <p style="text-align: center; max-width: 800px; margin: 40px auto; color: var(--text-grey); font-style: italic; line-height: 1.8;">
+            The Hive brings together generative organisations — businesses and community groups that create and circulate value locally rather than extracting it — to form a living ecosystem in Temple Quarter. Through shared funding, mutual support, and collective action, members help grow a local economy that works for everyone.
         </p>
     </section>
 
@@ -254,6 +265,7 @@
                     <li>Employ locally (>50% TQ residents)</li>
                     <li>Spend locally & prioritise local supply chains</li>
                     <li>Pay a Real Living Wage</li>
+                    <li>Pursue a diverse and inclusive workforce</li>
                     <li>Reinvest in TQ where possible</li>
                 </ul>
                 <a href="#" class="btn btn-warm" style="display:inline-block; margin-top:20px;">Register as Business</a>
@@ -302,22 +314,22 @@
             <div class="how-step">
                 <div class="step-num">1</div>
                 <h4>Join</h4>
-                <p style="font-size: 0.85rem;">Free membership. Sign the generative promise. We support your transition.</p>
+                <p style="font-size: 0.85rem;">Free membership, community promise. Sign the generative promise. We support your transition.</p>
             </div>
             <div class="how-step">
                 <div class="step-num">2</div>
                 <h4>Connect & Grow</h4>
-                <p style="font-size: 0.85rem;">Part of a living ecosystem. Trade, partnerships and expert support.</p>
+                <p style="font-size: 0.85rem;">Access the Hive's network and online hub. Trade, partner and collaborate.</p>
             </div>
             <div class="how-step">
                 <div class="step-num">3</div>
                 <h4>Apply for Funding</h4>
-                <p style="font-size: 0.85rem;">Monthly themed rounds. Community decides and votes on shortlists.</p>
+                <p style="font-size: 0.85rem;">Monthly themed rounds. A panel shortlists, then the community votes.</p>
             </div>
             <div class="how-step">
                 <div class="step-num">4</div>
                 <h4>Reinvest & Regenerate</h4>
-                <p style="font-size: 0.85rem;">Give back, build forward. Unlock Social Value procurement.</p>
+                <p style="font-size: 0.85rem;">Give back, build forward. Unlock Social Value Act procurement.</p>
             </div>
         </div>
     </section>
@@ -325,18 +337,13 @@
     <section>
         <h2 class="section-title">Who Runs the Hive?</h2>
         <div class="join-grid">
-            <div>
-                <h4>Bristol BID</h4>
-                <p style="font-size: 0.9rem;">Founded by BBID to kickstart the ecosystem. They provide initial funding and hold a seat on the board to ensure continuity.</p>
-                <h4>The Board</h4>
-                <p style="font-size: 0.9rem;">Elected members and community leaders (mostly TQ residents). They are paid for their time and decide funding focus each year.</p>
+            <div class="vision-box" style="border-bottom:none; border-left:5px solid var(--warm-orange);">
+                <h4>Bristol BID & The Board</h4>
+                <p style="font-size: 0.95rem; line-height:1.6;">Founded by BBID to kickstart the ecosystem. The Board (TQ residents & leaders) decides funding focus and manages the Hive. They are paid for their time.</p>
             </div>
-            <div>
+            <div class="vision-box" style="border-bottom:none; border-left:5px solid var(--honey-gold);">
                 <h4>The Members</h4>
-                <p style="font-size: 0.9rem;">The core of the Hive. Members vote on funding decisions, suggest where money is needed, and can be elected to the board.</p>
-                <div style="background: var(--honey-gold); padding: 20px; border-radius: 10px; color: white;">
-                    <p style="margin:0;"><strong>Reminder:</strong> Membership is always free. The commitment is to the community promise.</p>
-                </div>
+                <p style="font-size: 0.95rem; line-height:1.6;">The core of the Hive. Members vote on funding decisions, suggest needs, and can be elected to the board. Membership is always <strong>free</strong>.</p>
             </div>
         </div>
     </section>
@@ -381,17 +388,14 @@
     </footer>
 
     <script>
-        // 数字滚动动画脚本
         const counters = document.querySelectorAll('.counter');
         const speed = 200;
-
         const startCounters = () => {
             counters.forEach(counter => {
                 const updateCount = () => {
                     const target = +counter.getAttribute('data-target');
                     const count = +counter.innerText;
                     const inc = target / speed;
-
                     if (count < target) {
                         counter.innerText = (count + inc).toFixed(target < 100 ? 1 : 0);
                         setTimeout(updateCount, 1);
@@ -402,13 +406,9 @@
                 updateCount();
             });
         };
-
-        // 滚动到该区域时启动动画
         window.addEventListener('scroll', () => {
             const statsPos = document.querySelector('.stats-bar').getBoundingClientRect().top;
-            if(statsPos < window.innerHeight) {
-                startCounters();
-            }
+            if(statsPos < window.innerHeight) { startCounters(); }
         }, {once: true});
     </script>
 </body>
