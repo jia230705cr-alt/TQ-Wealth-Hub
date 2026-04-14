@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temple Quarter Wealth Hub | Bristol</title>
+    <title>Temple Quarter Wealth Hive | Bristol</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -85,6 +85,48 @@
         }
         .btn-blue { background: var(--accent-blue); color: white; }
         .btn-white { background: white; color: var(--accent-blue); border: 1px solid var(--accent-blue); }
+        .vision-section {
+    padding: 100px 50px;
+    background-color: white;
+    text-align: center;
+}
+
+.vision-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.vision-tag {
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.vision-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    color: var(--primary-navy);
+}
+
+.vision-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-grey);
+    text-align: left; /* 保持长文本的可读性 */
+    column-count: 2; /* 双列布局，看起来更像高端杂志或报告 */
+    column-gap: 50px;
+}
+
+@media (max-width: 768px) {
+    .vision-text { column-count: 1; } /* 手机端恢复单列 */
+    .vision-title { font-size: 2rem; }
+}
 
         /* ================= Governance & Quiz ================= */
         .governance-tag {
@@ -172,14 +214,14 @@
     <header>
         <a href="/" class="logo-box">
             <div class="tq-circle">TQ</div>
-            <div class="logo-text">Temple Quarter Wealth Hub</div>
+            <div class="logo-text">Temple Quarter Wealth Hive</div>
         </a>
 
         <nav>
             <div class="nav-item">
                 <span class="nav-link">About</span>
                 <div class="dropdown">
-                    <a href="javascript:void(0)" onclick="toggleModal(true)">What is TQ Wealth Hub?</a>
+                    <a href="javascript:void(0)" onclick="toggleModal(true)">What is TQ Wealth Hive?</a>
                     <a href="#">Our Story</a>
                     <a href="#">Annual Report 2025</a>
         <a href="#">Impact Map</a>
@@ -232,7 +274,7 @@
         <p>Bristol’s first Wealth Hub dedicated to Generative Organisations and VCSEs. We anchor wealth in Temple Quarter to create a self-sustaining local economy owned by you.</p>
         
         <div class="cta-group">
-            <a href="funding-explorer.html" class="btn btn-blue">Explore Funding</a>
+            <a href="funding-explorer.html" class="btn btn-blue">Explore </a>
             <a href="apply.html" class="btn btn-blue" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Apply Now</a>
             <a href="community-hub.html" class="btn btn-white">Community Hub</a>
         </div>
@@ -241,7 +283,23 @@
     <div class="governance-tag">
         Run by the community, for the community. Decision power stays in TQ.
     </div>
-
+<section class="vision-section">
+    <div class="vision-container">
+        <span class="vision-tag">Our Vision</span>
+        <h2 class="vision-title">Building a Wellbeing Economy for Temple Quarter</h2>
+        
+        <div class="vision-text">
+            <p style="margin-top: 0;">
+                <strong>TQ Community Hive</strong> is built on the principles of a wellbeing economy — one that measures success not just in profit, but in the health, connection, and resilience of the whole community. We believe that when businesses and organisations are rooted in a place, accountable to it, and actively reinvesting in it, they become the building blocks of a genuinely thriving neighbourhood.
+            </p>
+            <p>
+                The Hive brings together generative organisations — businesses and community groups that create and circulate value locally rather than extracting it — to form a living ecosystem in Temple Quarter. Through shared funding, mutual support, and collective action, members help grow a local economy that works for everyone who lives and works here.
+            </p>
+        </div>
+        
+        <div style="margin-top: 50px; border-bottom: 1px solid var(--border-color); width: 80px; margin-left: auto; margin-right: auto;"></div>
+    </div>
+</section>
     <section class="quiz-section">
         <h3 style="font-family: 'Playfair Display', serif; margin: 0 0 10px;">Is your organisation Generative?</h3>
         <div class="quiz-grid">
