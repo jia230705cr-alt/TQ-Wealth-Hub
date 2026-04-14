@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard | TQ Wealth Hive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-orange: #FF8C61;
+            --soft-cream: #FFF9F3;
+            --deep-clay: #4A3B33;
+            --leaf-green: #88A47C;
+            --honey-gold: #FFC069;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #FDFBFA;
+            margin: 0;
+            color: var(--deep-clay);
+            display: flex;
+        }
+
+        /* --- 左侧侧边导航 --- */
+        .side-nav {
+            width: 240px;
+            height: 100vh;
+            background: var(--deep-clay);
+            color: white;
+            position: fixed;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        .side-nav .logo {
+            font-family: 'Playfair Display', serif;
+            color: var(--warm-orange);
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .nav-link.active, .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* --- 主内容区 --- */
+        .main-content {
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* 顶部条 */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* Funding 申请卡片 - 强化设计 */
+        .funding-hero {
+            background: linear-gradient(135deg, var(--deep-clay), #634f44);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .funding-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin: 0 0 10px 0; color: var(--honey-gold); }
+        
+        .apply-btn {
+            background: var(--warm-orange);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(255,140,97,0.3);
+        }
+
+        .apply-btn:hover { background: #e67e56; transform: translateY(-3px); }
+
+        /* 卡片网格 */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+
+        .card h3 { font-family: 'Playfair Display', serif; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+
+        /* 资格检查清单 */
+        .criteria-pill {
+            display: inline-block;
+            background: #F0F7F1;
+            color: var(--leaf-green);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin: 5px;
+            font-weight: 600;
+        }
+
+        /* 活动/交易流 */
+        .item-row {
+            padding: 15px;
+            border-radius: 12px;
+            background: #FDFDFD;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-info b { display: block; color: var(--deep-clay); }
+        .item-info span { font-size: 0.85rem; color: #888; }
+
+        /* 标签 */
+        .status-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .tag-green { background: #E8F5E9; color: #2E7D32; }
+        .tag-orange { background: #FFF3E0; color: #E65100; }
+
+        /* 模态框 (申请表单弹出) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            width: 500px;
+            padding: 40px;
+            border-radius: 25px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="side-nav">
+        <a href="index.html" class="logo">TQ Wealth Hive</a>
+        <a href="#" class="nav-link active">🏠 Dashboard</a>
+        <a href="#" class="nav-link">💰 Funding Center</a>
+        <a href="#" class="nav-link">🤝 Member Network</a>
+        <a href="#" class="nav-link">📊 Impact Tracking</a>
+        <a href="#" class="nav-link">⚙️ Settings</a>
+        
+        <div style="margin-top: 100px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+            <small style="color: #888;">Community Manager</small>
+            <p style="font-size: 0.9rem; margin: 5px 0;">Sarah Jenkins</p>
+            <a href="mailto:sarah@tqhive.org" style="color: var(--warm-orange); font-size: 0.8rem; text-decoration: none;">Contact Manager</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <div>
+                <h1 style="margin:0;">Welcome back, Bristol Eco-Shop!</h1>
+                <p style="color: #888; margin: 5px 0;">Here is what's happening in Temple Quarter today.</p>
+            </div>
+            <div style="text-align: right;">
+                <span class="status-tag tag-green">● Verified Generative Member</span>
+            </div>
+        </div>
+
+        <section class="funding-hero">
+            <div class="funding-info">
+                <h2>Regenerative Funding Pool</h2>
+                <p>Current Round: <strong>Spring 2026</strong> | Available: <strong>£45,000</strong></p>
+                <div style="margin-top: 15px;">
+                    <span class="criteria-pill">✓ 75%+ Local Staff</span>
+                    <span class="criteria-pill">✓ Living Wage Cert.</span>
+                    <span class="criteria-pill">✓ TQ Based</span>
+                </div>
+            </div>
+            <button class="apply-btn" onclick="openFundingModal()">Apply for Funding</button>
+        </section>
+
+        <div class="dashboard-grid">
+            <div class="content-left">
+                <div class="card">
+                    <h3>📢 Member Exchange & Collabs</h3>
+                    <div class="item-row">
+                        <div class="item-info">
+                            <b>Shared Logistics Opportunity</b>
+                            <span>From: Green Deliveries | Needs: Partner for Tuesday rounds</span>
+                        </div>
+                        <span class="status-tag tag-orange">Urgent</span>
+                    </div>
+                    <div class="item-row">
+                        <div class="item-info">
+                            <b>Community Mentorship</b>
+                            <span>Volunteer to mentor 2 local startups | Reward: 50 Hive Credits</span>
+                        </div>
+                        <a href="#" style="color: var(--warm-orange); font-size: 0.85rem; font-weight: bold;">View Details</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🏆 Your Impact Progress</h3>
+                    <p style="font-size: 0.9rem; color: #666;">You are <strong>£240</strong> away from unlocking the "Community Anchor" badge!</p>
+                    <div style="height: 12px; background: #eee; border-radius: 10px; overflow: hidden; margin: 15px 0;">
+                        <div style="width: 82%; height: 100%; background: var(--leaf-green);"></div>
+                    </div>
+                    <small>82% of local spend target reached this quarter.</small>
+                </div>
+            </div>
+
+            <div class="content-right">
+                <div class="card">
+                    <h3>📅 Upcoming Hive Events</h3>
+                    <div style="margin-bottom: 20px;">
+                        <div style="color: var(--warm-orange); font-weight: bold; font-size: 0.8rem;">APR 22</div>
+                        <p style="margin: 5px 0; font-size: 0.95rem;"><b>Circular Economy Workshop</b></p>
+                        <small>Engine Shed, 18:00</small>
+                    </div>
+                    <div>
+                        <div style="color: var(--warm-orange); font-weight: bold; font-size: 0.8rem;">MAY 05</div>
+                        <p style="margin: 5px 0; font-size: 0.95rem;"><b>Member Town Hall Vote</b></p>
+                        <small>Online / Zoom</small>
+                    </div>
+                </div>
+
+                <div class="card" style="background: #FFF9F3; border: 1px dashed var(--warm-orange);">
+                    <h3>💡 Funding Tip</h3>
+                    <p style="font-size: 0.85rem; line-height: 1.4;">Members who demonstrate a <b>10% increase</b> in local supply chain spending are 2x more likely to be approved for zero-interest Hive Loans.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="fundingModal">
+        <div class="modal-content">
+            <h2 style="font-family: 'Playfair Display', serif;">Apply for Regenerative Funding</h2>
+            <p style="font-size: 0.9rem; color: #666;">Please confirm you meet the criteria before submitting.</p>
+            <form style="margin-top: 20px;">
+                <label style="display:block; margin-bottom:10px; font-weight:bold;">Project Title</label>
+                <input type="text" placeholder="e.g. Solar Panel Installation" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:1px solid #ddd;">
+                
+                <label style="display:block; margin-bottom:10px; font-weight:bold;">Amount Requested (£)</label>
+                <input type="number" placeholder="Max £15,000" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:1px solid #ddd;">
+                
+                <label style="display:block; margin-bottom:10px; font-weight:bold;">How will this benefit TQ?</label>
+                <textarea rows="4" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:1px solid #ddd;"></textarea>
+
+                <div style="display:flex; gap: 10px;">
+                    <button type="button" class="apply-btn" style="flex:1" onclick="submitApplication()">Submit Application</button>
+                    <button type="button" onclick="closeFundingModal()" style="flex:1; background:#eee; border:none; border-radius:50px; cursor:pointer;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openFundingModal() {
+            document.getElementById('fundingModal').style.display = 'flex';
+        }
+        function closeFundingModal() {
+            document.getElementById('fundingModal').style.display = 'none';
+        }
+        function submitApplication() {
+            alert('Your application has been sent to the Hive Governance Board for review. You will hear from us within 14 days!');
+            closeFundingModal();
+        }
+    </script>
+</body>
+</html>
