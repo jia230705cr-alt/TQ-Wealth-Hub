@@ -104,143 +104,108 @@
             color: var(--warm-orange); font-size: 0.75rem; text-transform: uppercase; 
             margin: 0 0 10px 0; letter-spacing: 1px; border-bottom: 1px solid #FDF5ED;
         }
-/* 悬停下拉容器 */
-.hover-dropdown {
+/* 确保导航项容器是相对定位 */
+.nav-item-wrapper {
     position: relative;
     display: inline-block;
+    padding: 10px 15px; /* 与你其他的 nav 间距保持一致 */
 }
 
-/* 触发按钮样式 */
-.hover-trigger {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
+/* 基础导航链接样式 */
+.nav-link {
+    text-decoration: none;
     color: var(--deep-clay);
-    cursor: pointer;
-    padding: 12px 25px;
-    border-bottom: 2px solid transparent;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
     transition: 0.3s;
 }
 
-.hover-trigger:hover {
-    color: var(--warm-orange);
-    border-bottom: 2px solid var(--warm-orange);
-}
-
-.arrow {
-    font-size: 0.7rem;
-    vertical-align: middle;
-    margin-left: 5px;
-    transition: 0.3s;
-}
-
-/* 隐藏的单栏窗口 */
-.dropdown-window {
+/* 核心：隐藏的下拉小窗口 */
+.nav-dropdown-window {
     visibility: hidden;
     opacity: 0;
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    width: 380px; /* 单栏窗口宽度稍大 */
+    width: 260px;
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(74, 59, 51, 0.15);
-    padding: 30px;
-    z-index: 100;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 15px;
+    z-index: 1000;
     transition: all 0.3s ease;
-    border: 1px solid #f0efee;
-    text-align: left; /* 内部左对齐 */
+    border: 1px solid #f0f0f0;
 }
 
-/* 鼠标移入触发显示 */
-.hover-dropdown:hover .dropdown-window {
+/* 悬停显示 */
+.nav-item-wrapper:hover .nav-dropdown-window {
     visibility: visible;
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
 
-.hover-dropdown:hover .arrow {
-    transform: rotate(180deg);
-}
-
-/* 窗口内部标题 */
-.dropdown-window h4 {
-    margin: 0 0 10px 0;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
+.nav-item-wrapper:hover .nav-link {
     color: var(--warm-orange);
 }
 
-.dropdown-intro {
-    font-size: 0.9rem;
-    color: var(--text-grey);
-    margin: 0 0 20px 0;
-    line-height: 1.4;
-}
-
-/* 单栏列表布局 */
-.dropdown-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* 垂直间距 */
-}
-
-.member-list-item {
+/* 下拉菜单内部样式 */
+.dropdown-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 12px;
-    background: var(--soft-cream);
-    border-radius: 12px;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
     transition: 0.2s;
+    cursor: pointer;
 }
 
-.member-list-item:hover {
-    background: #FFEDDE;
-    transform: translateX(3px); /* 悬停时的微妙右移反馈 */
+.dropdown-item:hover {
+    background: var(--soft-cream);
 }
 
-/* 首字母占位图样式 */
-.member-logo-placeholder {
-    width: 40px;
-    height: 40px;
+/* 紧凑的小圆圈标志 */
+.initials {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.75rem;
+    font-weight: 800;
     color: white;
     flex-shrink: 0;
 }
 
-/* 商业和组织的占位颜色区分 */
-.logo-biz { background: var(--warm-orange); } /* 商业用橙色 */
-.logo-org { background: var(--leaf-green); } /* 组织用绿色 */
+.initials.biz { background: var(--warm-orange); }
+.initials.org { background: var(--leaf-green); }
 
-/* 公司名字信息 */
-.member-info b {
-    display: block;
-    font-size: 0.95rem;
+.member-title {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--deep-clay);
-    margin-bottom: 2px;
 }
 
-.member-info small {
-    display: block;
-    font-size: 0.75rem;
+.member-tag {
+    margin: 0;
+    font-size: 0.7rem;
     color: var(--text-grey);
 }
 
-.dropdown-footer {
-    margin-top: 20px;
-    padding-top: 15px;
+.dropdown-link-all {
+    margin-top: 10px;
+    padding-top: 10px;
     border-top: 1px solid #eee;
-    font-size: 0.8rem;
-    color: var(--text-grey);
-    font-style: italic;
     text-align: center;
+}
+
+.dropdown-link-all a {
+    font-size: 0.75rem;
+    color: var(--warm-orange);
+    text-decoration: none;
+    font-weight: 600;
 }
         /* --- Hero Section (保持原有背景，优化布局) --- */
         .hero {
@@ -434,58 +399,38 @@
                     <a href="#">📊 Annual Report 2025</a>
                     <a href="#">📍 Impact Map</a>
                 </div>
-               <section class="network-hover-section" style="padding: 40px 0; background: white; text-align: center;">
-    <div class="container" style="display: flex; justify-content: center;">
-        
-        <div class="hover-dropdown">
-            <div class="hover-trigger">
-                Our Generative Network <span class="arrow">▼</span>
-            </div>
-            
-            <div class="dropdown-window single-column-window">
-                <h4>Generative Businesses & Organisations</h4>
-                <p class="dropdown-intro">Connect with local members committed to a sustainable Temple Quarter.</p>
-                
-                <div class="dropdown-list">
-                    <div class="member-list-item">
-                        <div class="member-logo-placeholder logo-biz">TB</div>
-                        <div class="member-info">
-                            <b>TQ Bakery Co-operative</b>
-                            <small>Food & Beverage</small>
-                        </div>
-                    </div>
-                    
-                    <div class="member-list-item">
-                        <div class="member-logo-placeholder logo-org">ED</div>
-                        <div class="member-info">
-                            <b>Eco-Delivery Systems CIC</b>
-                            <small>Logistics & Transport</small>
-                        </div>
-                    </div>
-                    
-                    <div class="member-list-item">
-                        <div class="member-logo-placeholder logo-biz">FG</div>
-                        <div class="member-info">
-                            <b>Fair Grounds Ventures</b>
-                            <small>Responsible Investment</small>
-                        </div>
-                    </div>
-                    
-                    <div class="member-list-item">
-                        <div class="member-logo-placeholder logo-org">TA</div>
-                        <div class="member-info">
-                            <b>Temple Arts Collective</b>
-                            <small>Community Interest Company</small>
-                        </div>
-                    </div>
+               <div class="nav-item-wrapper">
+    <a href="#" class="nav-link">Network</a>
+    
+    <div class="nav-dropdown-window">
+        <div class="dropdown-column">
+            <div class="dropdown-item">
+                <span class="initials biz">TB</span>
+                <div>
+                    <p class="member-title">TQ Bakery Co-op</p>
+                    <p class="member-tag">Business</p>
                 </div>
-                
-                <div class="dropdown-footer">Together for a circular and social economy</div>
+            </div>
+            <div class="dropdown-item">
+                <span class="initials org">ED</span>
+                <div>
+                    <p class="member-title">Eco-Delivery CIC</p>
+                    <p class="member-tag">Organisation</p>
+                </div>
+            </div>
+            <div class="dropdown-item">
+                <span class="initials biz">FG</span>
+                <div>
+                    <p class="member-title">Fair Grounds Ventures</p>
+                    <p class="member-tag">Business</p>
+                </div>
+            </div>
+            <div class="dropdown-link-all">
+                <a href="#">View full directory →</a>
             </div>
         </div>
-
     </div>
-</section> 
+</div>
             </div>
             <div class="nav-item">
                 <span class="nav-link">Impact</span>
