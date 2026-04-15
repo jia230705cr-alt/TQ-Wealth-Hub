@@ -104,7 +104,68 @@
             color: var(--warm-orange); font-size: 0.75rem; text-transform: uppercase; 
             margin: 0 0 10px 0; letter-spacing: 1px; border-bottom: 1px solid #FDF5ED;
         }
+.members-section {
+    padding: 80px 0;
+    background-color: white;
+}
 
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    transition: all 0.5s ease;
+}
+
+.member-card {
+    background: var(--soft-cream);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.member-card:hover {
+    border-color: var(--honey-gold);
+    transform: translateY(-5px);
+    background: #FFF;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.member-logo {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.member-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--deep-clay);
+}
+
+/* 隐藏机制 */
+.hidden-member {
+    display: none;
+    opacity: 0;
+}
+
+.view-all-btn {
+    background: transparent;
+    border: 2px solid var(--warm-orange);
+    color: var(--warm-orange);
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-all-btn:hover {
+    background: var(--warm-orange);
+    color: white;
+}
         /* --- Hero Section (保持原有背景，优化布局) --- */
         .hero {
             position: relative;
@@ -297,6 +358,43 @@
                     <a href="#">📊 Annual Report 2025</a>
                     <a href="#">📍 Impact Map</a>
                 </div>
+                <section class="members-section">
+    <div class="container">
+        <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 40px;">Our Thriving Network</h2>
+        
+        <div class="members-grid" id="membersGrid">
+            <div class="member-card">
+                <div class="member-logo">🍞</div>
+                <div class="member-name">TQ Bakery Co-op</div>
+            </div>
+            <div class="member-card">
+                <div class="member-logo">🚲</div>
+                <div class="member-name">Eco-Delivery Services</div>
+            </div>
+            <div class="member-card">
+                <div class="member-logo">🌱</div>
+                <div class="member-name">Urban Gardeners NGO</div>
+            </div>
+            <div class="member-card">
+                <div class="member-logo">⚡</div>
+                <div class="member-name">Bristol Local Energy</div>
+            </div>
+
+            <div class="member-card hidden-member">
+                <div class="member-logo">☕</div>
+                <div class="member-name">The Fair Trade Cafe</div>
+            </div>
+            <div class="member-card hidden-member">
+                <div class="member-logo">🎨</div>
+                <div class="member-name">Temple Arts Collective</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="view-all-btn" onclick="toggleMembers()" id="viewAllBtn">View All Members ↓</button>
+        </div>
+    </div>
+</section>
             </div>
             <div class="nav-item">
                 <span class="nav-link">Impact</span>
@@ -532,6 +630,22 @@
                 startCounters(); 
             }
         }, {once: true});
+        function toggleMembers() {
+    const hiddenMembers = document.querySelectorAll('.hidden-member');
+    const btn = document.getElementById('viewAllBtn');
+    
+    hiddenMembers.forEach(member => {
+        if (member.style.display === 'block') {
+            member.style.display = 'none';
+            member.style.opacity = '0';
+            btn.innerText = 'View All Members ↓';
+        } else {
+            member.style.display = 'block';
+            setTimeout(() => { member.style.opacity = '1'; }, 10); // 微小的延迟实现淡入
+            btn.innerText = 'Show Less ↑';
+        }
+    });
+}
     </script>
 </body>
 </html>
