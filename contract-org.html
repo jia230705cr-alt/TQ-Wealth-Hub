@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Organisation Contract | TQ Wealth Hive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* 这里的 CSS 保持和 contract.html 基本一致，颜色改为绿色系 */
+        :root {
+            --warm-orange: #FF8C61;
+            --soft-cream: #F7FAF7; /* 更绿一点的底色 */
+            --deep-clay: #334A3B; /* 更深的森林绿 */
+            --leaf-green: #88A47C;
+            --honey-gold: #FFC069;
+        }
+        /* 沿用之前的样式代码... (此处省略，保持一致) */
+        body { font-family: 'Quicksand', sans-serif; background-color: var(--soft-cream); color: var(--deep-clay); margin: 0; padding: 40px 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .contract-container { background: white; max-width: 800px; width: 100%; padding: 60px; border-radius: 30px; box-shadow: 0 20px 60px rgba(51, 74, 59, 0.1); position: relative; }
+        header { text-align: center; margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 30px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 15px 0; }
+        .commitment-item { background: #FDFDFD; border: 1px solid #eee; border-radius: 15px; padding: 25px; margin-bottom: 20px; display: flex; gap: 20px; }
+        .commitment-number { background: var(--leaf-green); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 700; flex-shrink: 0; }
+        .timeframe { display: inline-block; background: #eef5ee; color: var(--deep-clay); padding: 6px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-top: 10px;}
+        .signature-section { background: #F2F6F2; padding: 40px; border-radius: 20px; text-align: center; }
+        .sign-btn { background: var(--deep-clay); color: white; padding: 18px 40px; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; }
+        .sign-btn:disabled { background: #ccc; }
+        /* 勋章遮罩 */
+        .badge-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(51, 74, 59, 0.9); z-index: 1000; justify-content: center; align-items: center; }
+        .badge-card { background: white; padding: 50px; border-radius: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="contract-container">
+        <header>
+            <div style="color: var(--leaf-green); font-weight: bold; letter-spacing: 2px;">COMMUNITY ORGANISATION</div>
+            <h1>Community Contract</h1>
+            <p style="color: #666;">To create a Thriving Temple Quarter Community, I agree to meet these social commitments:</p>
+        </header>
+
+        <div class="commitments-list">
+            <div class="commitment-item">
+                <div class="commitment-number">1</div>
+                <div class="commitment-content">
+                    <h3 style="font-family: 'Playfair Display', serif;">Support the TQ Community</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">Support thriving key themes: <b>Social</b> (Building capital), <b>Environmental</b> (Sustainability), <b>Economic</b> (Skills & training), and <b>Wellbeing</b> (Health).</p>
+                    <span class="timeframe">Timeframe: Immediately on signing</span>
+                </div>
+            </div>
+
+            <div class="commitment-item">
+                <div class="commitment-number">2</div>
+                <div class="commitment-content">
+                    <h3 style="font-family: 'Playfair Display', serif;">Employ Locally Where Possible</h3>
+                    <p>Target a minimum of 50% of roles filled by Temple Quarter residents.</p>
+                    <span class="timeframe">Timeframe: 18 Months</span>
+                </div>
+            </div>
+
+            <div class="commitment-item">
+                <div class="commitment-number">3</div>
+                <div class="commitment-content">
+                    <h3 style="font-family: 'Playfair Display', serif;">Pay a Real Living Wage</h3>
+                    <p>Pay at or above the Real Living Wage for all staff, including contracted and agency workers.</p>
+                    <span class="timeframe">Timeframe: Immediately on signing / Annual Adjustments</span>
+                </div>
+            </div>
+
+            <div class="commitment-item">
+                <div class="commitment-number">4</div>
+                <div class="commitment-content">
+                    <h3 style="font-family: 'Playfair Display', serif;">Pursue a Diverse & Inclusive Workforce</h3>
+                    <p>Actively recruit from underrepresented groups and publish an annual EDI plan with measurable targets.</p>
+                    <span class="timeframe">Timeframe: First plan within 12 months</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="signature-section">
+            <input type="text" id="signerName" placeholder="Signatory Name" style="width:100%; padding:15px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd;" oninput="validate()">
+            <label style="display:flex; gap:10px; text-align:left; font-size:0.85rem; margin-bottom:20px;">
+                <input type="checkbox" id="check" onclick="validate()"> I confirm our organisation's commitment to the Temple Quarter social fabric.
+            </label>
+            <button id="signBtn" class="sign-btn" disabled onclick="showBadge()">Sign Community Contract</button>
+        </div>
+    </div>
+
+    <div class="badge-overlay" id="badgeOverlay">
+        <div class="badge-card">
+            <span style="font-size: 5rem; display:block; margin-bottom:20px;">🌱</span>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--leaf-green);">Community Guardian</h2>
+            <p>Your organisation is now a vital part of the Hive.</p>
+            <button onclick="window.location.href='hub.html'" style="margin-top:20px; background:var(--leaf-green); color:white; border:none; padding:12px 30px; border-radius:50px; cursor:pointer; font-weight:bold;">Go to Dashboard</button>
+        </div>
+    </div>
+
+    <script>
+        function validate() {
+            const btn = document.getElementById('signBtn');
+            btn.disabled = !(document.getElementById('signerName').value.length > 2 && document.getElementById('check').checked);
+        }
+        function showBadge() { document.getElementById('badgeOverlay').style.display = 'flex'; }
+    </script>
+</body>
+</html>
