@@ -32,6 +32,7 @@
             position: fixed;
             padding: 30px 20px;
             box-sizing: border-box;
+            z-index: 100;
         }
 
         .side-nav .logo {
@@ -51,6 +52,7 @@
             border-radius: 10px;
             margin-bottom: 10px;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .nav-link.active, .nav-link:hover {
@@ -66,6 +68,12 @@
             box-sizing: border-box;
         }
 
+        /* 统一页面容器样式 */
+        .hub-page { display: none; animation: fadeIn 0.4s ease; }
+        .hub-page.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         /* 顶部条 */
         .top-bar {
             display: flex;
@@ -74,7 +82,7 @@
             margin-bottom: 40px;
         }
 
-        /* Funding 申请卡片 - 强化设计 */
+        /* Funding 申请卡片 - 保持原样 */
         .funding-hero {
             background: linear-gradient(135deg, var(--deep-clay), #634f44);
             color: white;
@@ -104,7 +112,7 @@
 
         .apply-btn:hover { background: #e67e56; transform: translateY(-3px); }
 
-        /* 卡片网格 */
+        /* 卡片网格 - 保持原样 */
         .dashboard-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -121,7 +129,13 @@
 
         .card h3 { font-family: 'Playfair Display', serif; margin-top: 0; display: flex; align-items: center; gap: 10px; }
 
-        /* 资格检查清单 */
+        /* 新增：其他页面的网格布局 */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .member-card { border: 1px solid #eee; padding: 20px; border-radius: 15px; text-align: center; }
+        .member-avatar { width: 50px; height: 50px; background: var(--soft-cream); border-radius: 50%; margin: 0 auto 10px; line-height: 50px; font-size: 1.2rem; }
+
         .criteria-pill {
             display: inline-block;
             background: #F0F7F1;
@@ -133,7 +147,6 @@
             font-weight: 600;
         }
 
-        /* 活动/交易流 */
         .item-row {
             padding: 15px;
             border-radius: 12px;
@@ -145,10 +158,6 @@
             align-items: center;
         }
 
-        .item-info b { display: block; color: var(--deep-clay); }
-        .item-info span { font-size: 0.85rem; color: #888; }
-
-        /* 标签 */
         .status-tag {
             padding: 4px 10px;
             border-radius: 6px;
@@ -159,7 +168,7 @@
         .tag-green { background: #E8F5E9; color: #2E7D32; }
         .tag-orange { background: #FFF3E0; color: #E65100; }
 
-        /* 模态框 (申请表单弹出) */
+        /* 模态框保持原样 */
         .modal {
             display: none;
             position: fixed;
@@ -182,11 +191,11 @@
 
     <nav class="side-nav">
         <a href="index.html" class="logo">TQ Wealth Hive</a>
-        <a href="#" class="nav-link active">🏠 Dashboard</a>
-        <a href="#" class="nav-link">💰 Funding Center</a>
-        <a href="#" class="nav-link">🤝 Member Network</a>
-        <a href="#" class="nav-link">📊 Impact Tracking</a>
-        <a href="#" class="nav-link">⚙️ Settings</a>
+        <a onclick="showPage('dashboard-sec', this)" class="nav-link active">🏠 Dashboard</a>
+        <a onclick="showPage('funding-sec', this)" class="nav-link">💰 Funding Center</a>
+        <a onclick="showPage('network-sec', this)" class="nav-link">🤝 Member Network</a>
+        <a onclick="showPage('impact-sec', this)" class="nav-link">📊 Impact Tracking</a>
+        <a onclick="showPage('settings-sec', this)" class="nav-link">⚙️ Settings</a>
         
         <div style="margin-top: 100px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
             <small style="color: #888;">Community Manager</small>
@@ -196,96 +205,150 @@
     </nav>
 
     <main class="main-content">
-        <div class="top-bar">
-            <div>
-                <h1 style="margin:0;">Welcome back, Bristol Eco-Shop!</h1>
-                <p style="color: #888; margin: 5px 0;">Here is what's happening in Temple Quarter today.</p>
-            </div>
-            <div style="text-align: right;">
-                <span class="status-tag tag-green">● Verified Generative Member</span>
-            </div>
-        </div>
-
-        <section class="funding-hero">
-            <div class="funding-info">
-                <h2>Regenerative Funding Pool</h2>
-                <p>Current Round: <strong>Spring 2026</strong> | Available: <strong>£45,000</strong></p>
-                <div style="margin-top: 15px;">
-                    <span class="criteria-pill">✓ 75%+ Local Staff</span>
-                    <span class="criteria-pill">✓ Living Wage Cert.</span>
-                    <span class="criteria-pill">✓ TQ Based</span>
+        
+        <section id="dashboard-sec" class="hub-page active">
+            <div class="top-bar">
+                <div>
+                    <h1 style="margin:0;">Welcome back, Bristol Eco-Shop!</h1>
+                    <p style="color: #888; margin: 5px 0;">Here is what's happening in Temple Quarter today.</p>
+                </div>
+                <div style="text-align: right;">
+                    <span class="status-tag tag-green">● Verified Generative Member</span>
                 </div>
             </div>
-            <button class="apply-btn" onclick="openFundingModal()">Apply for Funding</button>
+
+            <section class="funding-hero">
+                <div class="funding-info">
+                    <h2>Regenerative Funding Pool</h2>
+                    <p>Current Round: <strong>Spring 2026</strong> | Available: <strong>£45,000</strong></p>
+                    <div style="margin-top: 15px;">
+                        <span class="criteria-pill">✓ 75%+ Local Staff</span>
+                        <span class="criteria-pill">✓ Living Wage Cert.</span>
+                        <span class="criteria-pill">✓ TQ Based</span>
+                    </div>
+                </div>
+                <button class="apply-btn" onclick="showPage('funding-sec', document.querySelector('.nav-link:nth-child(3)'))">Apply for Funding</button>
+            </section>
+
+            <div class="dashboard-grid">
+                <div class="content-left">
+                    <div class="card">
+                        <h3>📢 Member Exchange & Collabs</h3>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <b>Shared Logistics Opportunity</b>
+                                <span>From: Green Deliveries | Needs: Partner for Tuesday rounds</span>
+                            </div>
+                            <span class="status-tag tag-orange">Urgent</span>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <b>Community Mentorship</b>
+                                <span>Volunteer to mentor 2 local startups | Reward: 50 Hive Credits</span>
+                            </div>
+                            <a href="#" style="color: var(--warm-orange); font-size: 0.85rem; font-weight: bold;">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>🏆 Your Impact Progress</h3>
+                        <p style="font-size: 0.9rem; color: #666;">You are <strong>£240</strong> away from unlocking the "Community Anchor" badge!</p>
+                        <div style="height: 12px; background: #eee; border-radius: 10px; overflow: hidden; margin: 15px 0;">
+                            <div style="width: 82%; height: 100%; background: var(--leaf-green);"></div>
+                        </div>
+                        <small>82% of local spend target reached this quarter.</small>
+                    </div>
+                </div>
+
+                <div class="content-right">
+                    <div class="card">
+                        <h3>📅 Upcoming Hive Events</h3>
+                        <div style="margin-bottom: 20px;">
+                            <div style="color: var(--warm-orange); font-weight: bold; font-size: 0.8rem;">APR 22</div>
+                            <p style="margin: 5px 0; font-size: 0.95rem;"><b>Circular Economy Workshop</b></p>
+                            <small>Engine Shed, 18:00</small>
+                        </div>
+                        <div>
+                            <div style="color: var(--warm-orange); font-weight: bold; font-size: 0.8rem;">MAY 05</div>
+                            <p style="margin: 5px 0; font-size: 0.95rem;"><b>Member Town Hall Vote</b></p>
+                            <small>Online / Zoom</small>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: #FFF9F3; border: 1px dashed var(--warm-orange);">
+                        <h3>💡 Funding Tip</h3>
+                        <p style="font-size: 0.85rem; line-height: 1.4;">Members who demonstrate a <b>10% increase</b> in local supply chain spending are 2x more likely to be approved for zero-interest Hive Loans.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <div class="dashboard-grid">
-            <div class="content-left">
+        <section id="funding-sec" class="hub-page">
+            <div class="top-bar"><h1>💰 Funding Center</h1></div>
+            <div class="grid-3">
                 <div class="card">
-                    <h3>📢 Member Exchange & Collabs</h3>
-                    <div class="item-row">
-                        <div class="item-info">
-                            <b>Shared Logistics Opportunity</b>
-                            <span>From: Green Deliveries | Needs: Partner for Tuesday rounds</span>
-                        </div>
-                        <span class="status-tag tag-orange">Urgent</span>
-                    </div>
-                    <div class="item-row">
-                        <div class="item-info">
-                            <b>Community Mentorship</b>
-                            <span>Volunteer to mentor 2 local startups | Reward: 50 Hive Credits</span>
-                        </div>
-                        <a href="#" style="color: var(--warm-orange); font-size: 0.85rem; font-weight: bold;">View Details</a>
-                    </div>
+                    <h4 style="color:var(--warm-orange)">Small Grant</h4>
+                    <p>Up to £5,000 for social impact projects.</p>
+                    <button class="apply-btn" style="width:100%; padding:10px;" onclick="openFundingModal()">Apply Now</button>
                 </div>
-
                 <div class="card">
-                    <h3>🏆 Your Impact Progress</h3>
-                    <p style="font-size: 0.9rem; color: #666;">You are <strong>£240</strong> away from unlocking the "Community Anchor" badge!</p>
-                    <div style="height: 12px; background: #eee; border-radius: 10px; overflow: hidden; margin: 15px 0;">
-                        <div style="width: 82%; height: 100%; background: var(--leaf-green);"></div>
-                    </div>
-                    <small>82% of local spend target reached this quarter.</small>
+                    <h4 style="color:var(--leaf-green)">Regen Loan</h4>
+                    <p>0% interest loans for green equipment.</p>
+                    <button class="apply-btn" style="width:100%; padding:10px;" onclick="openFundingModal()">Apply Now</button>
+                </div>
+                <div class="card">
+                    <h4 style="color:var(--honey-gold)">Emergency Fund</h4>
+                    <p>Rapid response for local business crises.</p>
+                    <button class="apply-btn" style="width:100%; padding:10px;" onclick="openFundingModal()">Apply Now</button>
                 </div>
             </div>
+        </section>
 
-            <div class="content-right">
+        <section id="network-sec" class="hub-page">
+            <div class="top-bar"><h1>🤝 Member Network</h1></div>
+            <div class="grid-3">
+                <div class="member-card card"><div class="member-avatar">☕</div><b>Portwall Cafe</b><br><small>F&B Member</small></div>
+                <div class="member-card card"><div class="member-avatar">🎨</div><b>TQ Art Studio</b><br><small>Creative Member</small></div>
+                <div class="member-card card"><div class="member-avatar">🛠️</div><b>Bristol Repair</b><br><small>Service Member</small></div>
+            </div>
+        </section>
+
+        <section id="impact-sec" class="hub-page">
+            <div class="top-bar"><h1>📊 Impact Tracking</h1></div>
+            <div class="grid-2">
                 <div class="card">
-                    <h3>📅 Upcoming Hive Events</h3>
-                    <div style="margin-bottom: 20px;">
-                        <div style="color: var(--warm-orange); font-weight: bold; font-size: 0.8rem;">APR 22</div>
-                        <p style="margin: 5px 0; font-size: 0.95rem;"><b>Circular Economy Workshop</b></p>
-                        <small>Engine Shed, 18:00</small>
-                    </div>
-                    <div>
-                        <div style="color: var(--warm-orange); font-weight: bold; font-size: 0.8rem;">MAY 05</div>
-                        <p style="margin: 5px 0; font-size: 0.95rem;"><b>Member Town Hall Vote</b></p>
-                        <small>Online / Zoom</small>
-                    </div>
+                    <h3>Social Impact Score</h3>
+                    <div style="font-size: 3rem; font-weight: bold; color: var(--leaf-green);">88</div>
+                    <p>Top 10% of Temple Quarter businesses.</p>
                 </div>
-
-                <div class="card" style="background: #FFF9F3; border: 1px dashed var(--warm-orange);">
-                    <h3>💡 Funding Tip</h3>
-                    <p style="font-size: 0.85rem; line-height: 1.4;">Members who demonstrate a <b>10% increase</b> in local supply chain spending are 2x more likely to be approved for zero-interest Hive Loans.</p>
+                <div class="card">
+                    <h3>Local Spend Share</h3>
+                    <div style="font-size: 3rem; font-weight: bold; color: var(--warm-orange);">64%</div>
+                    <p>Of your total supplies are from TQ.</p>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="settings-sec" class="hub-page">
+            <div class="top-bar"><h1>⚙️ Settings</h1></div>
+            <div class="card" style="max-width: 500px;">
+                <h3>Account Information</h3>
+                <p><b>Business:</b> Bristol Eco-Shop</p>
+                <p><b>Email:</b> hello@bristoleco.com</p>
+                <button class="apply-btn" style="margin-top:20px;">Update Profile</button>
+            </div>
+        </section>
+
     </main>
 
     <div class="modal" id="fundingModal">
         <div class="modal-content">
             <h2 style="font-family: 'Playfair Display', serif;">Apply for Regenerative Funding</h2>
-            <p style="font-size: 0.9rem; color: #666;">Please confirm you meet the criteria before submitting.</p>
             <form style="margin-top: 20px;">
                 <label style="display:block; margin-bottom:10px; font-weight:bold;">Project Title</label>
                 <input type="text" placeholder="e.g. Solar Panel Installation" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:1px solid #ddd;">
-                
                 <label style="display:block; margin-bottom:10px; font-weight:bold;">Amount Requested (£)</label>
                 <input type="number" placeholder="Max £15,000" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:1px solid #ddd;">
-                
-                <label style="display:block; margin-bottom:10px; font-weight:bold;">How will this benefit TQ?</label>
-                <textarea rows="4" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:1px solid #ddd;"></textarea>
-
                 <div style="display:flex; gap: 10px;">
                     <button type="button" class="apply-btn" style="flex:1" onclick="submitApplication()">Submit Application</button>
                     <button type="button" onclick="closeFundingModal()" style="flex:1; background:#eee; border:none; border-radius:50px; cursor:pointer;">Cancel</button>
@@ -295,12 +358,24 @@
     </div>
 
     <script>
-        function openFundingModal() {
-            document.getElementById('fundingModal').style.display = 'flex';
+        // 核心切换函数
+        function showPage(pageId, element) {
+            // 1. 隐藏所有页面
+            document.querySelectorAll('.hub-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // 2. 显示点击的页面
+            document.getElementById(pageId).classList.add('active');
+            // 3. 更新侧边栏高亮
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
         }
-        function closeFundingModal() {
-            document.getElementById('fundingModal').style.display = 'none';
-        }
+
+        // 原有弹窗逻辑
+        function openFundingModal() { document.getElementById('fundingModal').style.display = 'flex'; }
+        function closeFundingModal() { document.getElementById('fundingModal').style.display = 'none'; }
         function submitApplication() {
             alert('Your application has been sent to the Hive Governance Board for review. You will hear from us within 14 days!');
             closeFundingModal();
