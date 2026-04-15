@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Community Contract | TQ Wealth Hive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-orange: #FF8C61;
+            --soft-cream: #FFF9F3;
+            --deep-clay: #4A3B33;
+            --leaf-green: #88A47C;
+            --honey-gold: #FFC069;
+            --text-grey: #6D5D55;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--deep-clay);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contract-container {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(74, 59, 51, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 装饰性的蜂巢纹理 */
+        .contract-container::before {
+            content: '🐝';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 10rem;
+            opacity: 0.05;
+            transform: rotate(15deg);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid var(--soft-cream);
+            padding-bottom: 30px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            color: var(--warm-orange);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin: 15px 0;
+            color: var(--deep-clay);
+        }
+
+        .preamble {
+            font-size: 1.1rem;
+            color: var(--text-grey);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 承诺条款样式 */
+        .commitments-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 50px 0;
+        }
+
+        .commitment-item {
+            background: #FDFDFD;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .commitment-item:hover {
+            border-color: var(--honey-gold);
+            background: #FFFBF5;
+            transform: translateY(-3px);
+        }
+
+        .commitment-number {
+            background: var(--honey-gold);
+            color: var(--deep-clay);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .commitment-content h3 {
+            margin: 0 0 10px 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-clay);
+        }
+
+        .commitment-content p {
+            margin: 0 0 15px 0;
+            color: var(--text-grey);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .timeframe {
+            display: inline-block;
+            background: var(--soft-cream);
+            color: var(--deep-clay);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 签署区域 */
+        .signature-section {
+            background: #F9F7F6;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .signature-field {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .signature-field label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .signature-field input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: 'Quicksand', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .signature-field input[type="text"]:focus {
+            border-color: var(--warm-orange);
+            outline: none;
+        }
+
+        .consent-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            text-align: left;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: var(--text-grey);
+        }
+
+        .consent-check input {
+            margin-top: 4px;
+        }
+
+        .sign-btn {
+            background: var(--deep-clay);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(74, 59, 51, 0.2);
+        }
+
+        .sign-btn:hover {
+            background: var(--warm-orange);
+            transform: translateY(-3px);
+        }
+
+        .sign-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* --- 悬停勋章 (Badge) 样式 --- */
+        .badge-overlay {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(74, 59, 51, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .badge-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .badge-card {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+            transform: scale(0.8);
+            transition: transform 0.5s;
+        }
+
+        .badge-overlay.show .badge-card {
+            transform: scale(1);
+        }
+
+        .badge-icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: awardPulse 1s ease-out;
+        }
+
+        @keyframes awardPulse {
+            0% { transform: scale(0.3); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        .badge-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--leaf-green);
+            margin: 0 0 10px 0;
+        }
+
+        .continue-btn {
+            margin-top: 30px;
+            background: var(--warm-orange);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .contract-container { padding: 30px; }
+            .commitment-item { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contract-container">
+        <header>
+            <a href="index.html" class="logo">TQ Wealth Hive</a>
+            <h1>Community Contract</h1>
+            <p class="preamble">For Generative Businesses in Temple Quarter</p>
+            <p style="font-size: 0.9rem; color: var(--text-grey); margin-top: 15px;">
+                To create a thriving Temple Quarter, I agree to meet these social commitments with the support of the Hive:
+            </p>
+        </header>
+
+        <ul class="commitments-list">
+            <li class="commitment-item">
+                <div class="commitment-number">1</div>
+                <div class="commitment-content">
+                    <h3>Convert to a Generative Structure</h3>
+                    <p>Transition to a worker-owned, co-operative, or wealth-sharing model that distributes value among owners, workers and consumers.</p>
+                    <span class="timeframe">Timeframe: Review within 1 year - Convert within 10 Years</span>
+                </div>
+            </li>
+
+            <li class="commitment-item">
+                <div class="commitment-number">2</div>
+                <div class="commitment-content">
+                    <h3>Employ Locally Where Possible</h3>
+                    <p>Target a minimum of 50% of roles filled by Temple Quarter residents.</p>
+                    <span class="timeframe">Timeframe: 18 Months</span>
+                </div>
+            </li>
+
+            <li class="commitment-item">
+                <div class="commitment-number">3</div>
+                <div class="commitment-content">
+                    <h3>Spend Locally Where Possible</h3>
+                    <p>Actively prioritise local supply chains for procurement of goods and services. Map current spend within 6 months and set annual improvement targets.</p>
+                    <span class="timeframe">Timeframe: Map in 6 months. Annual targets set from Year 1.</span>
+                </div>
+            </li>
+
+            <li class="commitment-item">
+                <div class="commitment-number">4</div>
+                <div class="commitment-content">
+                    <h3>Pay a Real Living Wage</h3>
+                    <p>Pay at or above the Real Living Wage (as set by the Living Wage Foundation) for all staff, including contracted and agency workers.</p>
+                    <span class="timeframe">Timeframe: Immediately on signing. Adjust annually.</span>
+                </div>
+            </li>
+
+            <li class="commitment-item">
+                <div class="commitment-number">5</div>
+                <div class="commitment-content">
+                    <h3>Pursue a Diverse & Inclusive Workforce</h3>
+                    <p>Actively recruit from underrepresented groups. Publish an annual Equality, Diversity & Inclusion plan with measurable targets and honest reporting.</p>
+                    <span class="timeframe">Timeframe: First plan within 12 months. Annual public report thereafter.</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="signature-section">
+            <div class="signature-field">
+                <label>Authorized Signatory Name (on behalf of the Business)</label>
+                <input type="text" id="signerName" placeholder="Type your full name to sign" oninput="validateForm()">
+            </div>
+
+            <div class="consent-check">
+                <input type="checkbox" id="consentCheck" onclick="validateForm()">
+                <label for="consentCheck">
+                    By signing, I confirm that my business is committed to these generative goals. I understand that the TQ Wealth Hive will provide tools, networking, and funding opportunities to support this transition.
+                </label>
+            </div>
+
+            <button class="sign-btn" id="signBtn" disabled onclick="handleSigning()">Digitally Sign Contract</button>
+        </div>
+    </div>
+
+    <div class="badge-overlay" id="badgeOverlay">
+        <div class="badge-card">
+            <span class="badge-icon">🎖️</span>
+            <h2>Generative Pioneer</h2>
+            <p>Your commitment to Temple Quarter is confirmed.</p>
+            <p style="color: var(--text-grey); font-size: 0.9rem;">Member ID: TQ-2026-042</p>
+            <button class="continue-btn" onclick="goToDashboard()">Enter Member Hub →</button>
+        </div>
+    </div>
+
+    <script>
+        // 验证表单：只有输入名字并勾选同意才能点击按钮
+        function validateForm() {
+            const name = document.getElementById('signerName').value;
+            const consent = document.getElementById('consentCheck').checked;
+            const btn = document.getElementById('signBtn');
+
+            if (name.trim().length > 2 && consent) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        // 处理签署：显示勋章
+        function handleSigning() {
+            // 可以在这里添加保存签署状态的逻辑
+            document.getElementById('badgeOverlay').classList.add('show');
+        }
+
+        // 进入 Dashboard
+        function goToDashboard() {
+            // 这里跳转到你之前的 hub.html 文件
+            window.location.href = 'hub.html';
+        }
+    </script>
+</body>
+</html>
