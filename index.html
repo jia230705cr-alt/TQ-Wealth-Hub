@@ -23,6 +23,40 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
+        /* 新增：Logo 和 Slogan 的专属样式 */
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px; /* 留出空间 */
+}
+
+.hive-logo-svg {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.slogan-box {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.slogan-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; /* 足够大，有力 */
+    background: linear-gradient(135deg, var(--deep-clay) 30%, var(--warm-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.welcome-subtext {
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: 8px;
+}
 
         /* --- 导航栏 --- */
         header {
@@ -389,7 +423,14 @@
 <body>
 
     <header>
-        <a href="#" class="logo">TQ Wealth Hive</a>
+        <nav class="side-nav">
+    <div class="brand-container">
+        <svg class="hive-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10L85 30V70L50 90L15 70V30L50 10Z" fill="none" stroke="#FF8C61" stroke-width="6"/>
+            <circle cx="50" cy="50" r="12" fill="#FFC069"/>
+            <path d="M35 50H25M75 50H65M50 35V25M50 75V65" stroke="#FF8C61" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <a href="index.html" class="logo" style="margin-bottom: 0;">TQ Wealth Hive</a>
         <nav>
             <div class="nav-item">
                 <span class="nav-link">About</span>
@@ -465,7 +506,22 @@
             <a href="community-hub.html" class="nav-item nav-link" style="margin-left:30px;">Community</a>
         </nav>
     </header>
-
+        
+    <section id="dashboard-sec" class="hub-page active">
+    <div class="top-bar">
+        <div>
+            <div class="slogan-box">
+                <div class="slogan-highlight">
+                    More than a network,<br>you're home in the Hive.
+                </div>
+                <div class="welcome-subtext">
+                    Connect. Flourish. Grow with your community family.
+                </div>
+            </div>
+            
+            <h1 style="margin:0; font-size: 1.4rem;">Welcome back, Bristol Eco-Shop!</h1>
+        </div>
+        ...
     <section class="hero">
         <div class="hero-content">
             <h1>Temple Quarter Wealth Hive</h1>
