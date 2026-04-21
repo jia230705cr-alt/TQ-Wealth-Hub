@@ -11,6 +11,9 @@
             --soft-cream: #FFF9F3;
             --deep-clay: #4A3B33;
             --leaf-green: #88A47C;
+            --gold: #D4AF37;
+            --silver: #A8A8A8;
+            --bronze: #CD7F32;
         }
 
         body {
@@ -30,29 +33,20 @@
         h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
         .subtitle { color: #666; font-size: 1.2rem; margin-bottom: 40px; }
 
-        /* --- Logo 滚动墙核心样式 --- */
+        /* --- 核心滚动样式 --- */
         .marquee-container {
             position: relative;
             width: 100vw;
-            max-width: 100%;
             overflow: hidden;
-            padding: 40px 0;
+            padding: 20px 0;
             background: white;
         }
 
         .marquee-content {
             display: flex;
-            width: calc(250px * 16); /* 盒子宽度 * 数量（需重复一次以实现无缝） */
-            animation: scroll 40s linear infinite;
-        }
-
-        .marquee-content:hover {
-            animation-play-state: paused; /* 鼠标悬停时暂停 */
-        }
-
-        /* 反向滚动行样式 */
-        .marquee-reverse .marquee-content {
-            animation: scroll-reverse 45s linear infinite;
+            /* 动态计算宽度：盒子(200+50) * 数量 */
+            width: fit-content;
+            animation: scroll 30s linear infinite;
         }
 
         .logo-card {
@@ -68,66 +62,54 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid #eee;
-            cursor: pointer;
+            flex-shrink: 0;
         }
 
         .logo-card:hover {
-            transform: scale(1.1) translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 140, 97, 0.2);
+            transform: scale(1.05) translateY(-5px);
             border-color: var(--warm-orange);
             background: white;
         }
 
-        .logo-placeholder {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        /* 分级标题样式 */
+        .tier-section { padding: 60px 0; background: white; border-top: 1px solid #eee; }
+        .tier-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
-
-        .logo-name {
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--deep-clay);
+        .tier-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .tier-badge {
+            width: 12px;
+            height: 40px;
+            border-radius: 10px;
         }
 
         /* 关键帧动画 */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 8)); } /* 滚动到一半的位置 */
+            100% { transform: translateX(-50%); }
         }
 
-        @keyframes scroll-reverse {
-            0% { transform: translateX(calc(-250px * 8)); }
-            100% { transform: translateX(0); }
+        /* 渐变遮罩 */
+        .marquee-container::before, .marquee-container::after {
+            content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2;
         }
+        .marquee-container::before { left: 0; background: linear-gradient(to right, white, transparent); }
+        .marquee-container::after { right: 0; background: linear-gradient(to left, white, transparent); }
 
-        /* 渐变遮罩：让边缘看起来是消失的 */
-        .marquee-container::before,
-        .marquee-container::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 250px;
-            height: 100%;
-            z-index: 2;
-        }
-
-        .marquee-container::before {
-            left: 0;
-            background: linear-gradient(to right, white, transparent);
-        }
-
-        .marquee-container::after {
-            right: 0;
-            background: linear-gradient(to left, white, transparent);
-        }
-
-        .back-home {
-            display: block;
-            text-align: center;
-            margin: 60px auto;
+        .business-link {
+            font-size: 0.75rem;
             color: var(--warm-orange);
             text-decoration: none;
-            font-weight: 700;
+            margin-top: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -136,55 +118,79 @@
     <header>
         <a href="index.html" style="text-decoration:none; color:var(--warm-orange); font-weight:700;">← Back to Hive</a>
         <h1>Our Generative Network</h1>
-        <p class="subtitle">A thriving ecosystem of 50+ businesses and community organisations.</p>
+        <p class="subtitle">A thriving ecosystem categorized by community impact.</p>
     </header>
 
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <div class="logo-card"><span class="logo-placeholder">🍞</span><span class="logo-name">TQ Bakery Co-op</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🚲</span><span class="logo-name">Eco-Logistics</span></div>
-            <div class="logo-card"><span class="logo-placeholder">☕</span><span class="logo-name">Fair Grounds</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🌱</span><span class="logo-name">Urban Gardeners</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🎨</span><span class="logo-name">Arts Hub CIC</span></div>
-            <div class="logo-card"><span class="logo-placeholder">⚡</span><span class="logo-name">Local Energy</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🧶</span><span class="logo-name">Makers Collective</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🏡</span><span class="logo-name">Land Trust</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🍞</span><span class="logo-name">TQ Bakery Co-op</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🚲</span><span class="logo-name">Eco-Logistics</span></div>
-            <div class="logo-card"><span class="logo-placeholder">☕</span><span class="logo-name">Fair Grounds</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🌱</span><span class="logo-name">Urban Gardeners</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🎨</span><span class="logo-name">Arts Hub CIC</span></div>
-            <div class="logo-card"><span class="logo-placeholder">⚡</span><span class="logo-name">Local Energy</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🧶</span><span class="logo-name">Makers Collective</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🏡</span><span class="logo-name">Land Trust</span></div>
+    <div class="tier-section">
+        <div class="tier-header">
+            <div class="tier-title">
+                <div class="tier-badge" style="background: var(--gold);"></div>
+                Gold Members
+            </div>
+            <p>Meeting 90%+ Regenerative Funding Criteria</p>
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <div class="logo-card"><span>🍞</span><b>TQ Bakery</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>☕</span><b>Fair Grounds</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🌱</span><b>Urban Garden</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>⚡</span><b>Local Energy</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🍞</span><b>TQ Bakery</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>☕</span><b>Fair Grounds</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🌱</span><b>Urban Garden</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>⚡</span><b>Local Energy</b><a class="business-link">Website →</a></div>
+            </div>
         </div>
     </div>
 
-    <div class="marquee-container marquee-reverse">
-        <div class="marquee-content">
-            <div class="logo-card"><span class="logo-placeholder">🍎</span><span class="logo-name">Orchard Project</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🛠️</span><span class="logo-name">Repair Cafe</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🏫</span><span class="logo-name">Learning Trust</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🧶</span><span class="logo-name">Stitch & Share</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🥗</span><span class="logo-name">Green Kitchen</span></div>
-            <div class="logo-card"><span class="logo-placeholder">📻</span><span class="logo-name">TQ Radio</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🧪</span><span class="logo-name">Bio-Lab CIC</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🪵</span><span class="logo-name">Woodwork Guild</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🍎</span><span class="logo-name">Orchard Project</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🛠️</span><span class="logo-name">Repair Cafe</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🏫</span><span class="logo-name">Learning Trust</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🧶</span><span class="logo-name">Stitch & Share</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🥗</span><span class="logo-name">Green Kitchen</span></div>
-            <div class="logo-card"><span class="logo-placeholder">📻</span><span class="logo-name">TQ Radio</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🧪</span><span class="logo-name">Bio-Lab CIC</span></div>
-            <div class="logo-card"><span class="logo-placeholder">🪵</span><span class="logo-name">Woodwork Guild</span></div>
+    <div class="tier-section" style="background: #fafafa;">
+        <div class="tier-header">
+            <div class="tier-title">
+                <div class="tier-badge" style="background: var(--silver);"></div>
+                Silver Members
+            </div>
+            <p>Meeting 70% of Community Impact Goals</p>
+        </div>
+        <div class="marquee-container" style="background: #fafafa;">
+            <div class="marquee-content" style="animation-duration: 40s; animation-direction: reverse;">
+                <div class="logo-card"><span>🚲</span><b>Eco-Logistics</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🎨</span><b>Arts Hub</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🧶</span><b>Makers Col.</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🏡</span><b>Land Trust</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🚲</span><b>Eco-Logistics</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🎨</span><b>Arts Hub</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🧶</span><b>Makers Col.</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🏡</span><b>Land Trust</b><a class="business-link">Website →</a></div>
+            </div>
         </div>
     </div>
 
-    <section style="padding: 100px 20px; text-align: center;">
+    <div class="tier-section">
+        <div class="tier-header">
+            <div class="tier-title">
+                <div class="tier-badge" style="background: var(--bronze);"></div>
+                Bronze Members
+            </div>
+            <p>Verified Members & Local Startups</p>
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-content" style="animation-duration: 35s;">
+                <div class="logo-card"><span>🍎</span><b>Orchard Proj</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🛠️</span><b>Repair Cafe</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🏫</span><b>Learning Trust</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>📻</span><b>TQ Radio</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🍎</span><b>Orchard Proj</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🛠️</span><b>Repair Cafe</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>🏫</span><b>Learning Trust</b><a class="business-link">Website →</a></div>
+                <div class="logo-card"><span>📻</span><b>TQ Radio</b><a class="business-link">Website →</a></div>
+            </div>
+        </div>
+    </div>
+
+    <section style="padding: 100px 20px; text-align: center; background: white;">
         <h2 style="font-family: 'Playfair Display', serif;">Ready to join the network?</h2>
         <p>Become a part of Temple Quarter's generative economy today.</p>
-        <button onclick="window.location.href='apply.html'" style="background:var(--deep-clay); color:white; border:none; padding:15px 40px; border-radius:50px; font-weight:bold; cursor:pointer; margin-top:20px;">Join the Hive</button>
+        <button style="background:var(--deep-clay); color:white; border:none; padding:15px 40px; border-radius:50px; font-weight:bold; cursor:pointer; margin-top:20px;">Join the Hive</button>
     </section>
 
 </body>
