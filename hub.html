@@ -283,26 +283,84 @@
             </div>
         </section>
 
-        <section id="funding-sec" class="hub-page">
-            <div class="top-bar"><h1>💰 Funding Center</h1></div>
-            <div class="grid-3">
-                <div class="card">
-                    <h4 style="color:var(--warm-orange)">Small Grant</h4>
-                    <p>Up to £5,000 for social impact projects.</p>
-                    <button class="apply-btn" style="width:100%; padding:10px;" onclick="openFundingModal()">Apply Now</button>
-                </div>
-                <div class="card">
-                    <h4 style="color:var(--leaf-green)">Regen Loan</h4>
-                    <p>0% interest loans for green equipment.</p>
-                    <button class="apply-btn" style="width:100%; padding:10px;" onclick="openFundingModal()">Apply Now</button>
-                </div>
-                <div class="card">
-                    <h4 style="color:var(--honey-gold)">Emergency Fund</h4>
-                    <p>Rapid response for local business crises.</p>
-                    <button class="apply-btn" style="width:100%; padding:10px;" onclick="openFundingModal()">Apply Now</button>
-                </div>
-            </div>
-        </section>
+        <style>
+    /* Funding Center 专用样式 */
+    .funding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
+    .funding-card { background: white; padding: 40px; border-radius: 25px; border: 1px solid #eee; transition: 0.3s; position: relative; }
+    .funding-card:hover { border-color: var(--warm-orange); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    
+    .amount-badge { background: var(--warm-orange); color: white; padding: 5px 15px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-bottom: 15px; }
+    
+    .funding-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--deep-clay); margin: 0 0 15px 0; }
+    .req-list { list-style: none; padding: 0; margin: 0; }
+    .req-list li { font-size: 0.9rem; margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-grey); }
+    .req-list li::before { content: '•'; color: var(--leaf-green); position: absolute; left: 0; font-weight: bold; }
+    
+    .apply-btn { display: block; width: 100%; text-align: center; padding: 15px; background: var(--deep-clay); color: white; border-radius: 12px; text-decoration: none; margin-top: 25px; font-weight: 600; }
+    .apply-btn:hover { background: var(--warm-orange); }
+</style>
+
+<section style="padding: 60px 20px;">
+    <h2 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px;">Funding Center</h2>
+
+    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 30px; border-left: 4px solid var(--leaf-green); padding-left: 15px;">Targeted Funding Rounds</h3>
+    <div class="funding-grid">
+        <div class="funding-card">
+            <span class="amount-badge">Up to £5,000</span>
+            <h3>Hospitality Fund</h3>
+            <ul class="req-list">
+                <li>Must provide community-accessible space.</li>
+                <li>Commitment: Reinvest 50% of total funds after 5 years.</li>
+            </ul>
+            <a href="#" class="apply-btn">Apply Now</a>
+        </div>
+        <div class="funding-card">
+            <span class="amount-badge">Up to £5,000</span>
+            <h3>Mental Wellbeing VCSE Fund</h3>
+            <ul class="req-list">
+                <li>For orgs improving local mental health.</li>
+                <li>Focus: Ensuring diverse and inclusive wellbeing support.</li>
+            </ul>
+            <a href="#" class="apply-btn">Apply Now</a>
+        </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; margin-top: 60px; margin-bottom: 30px; border-left: 4px solid var(--warm-orange); padding-left: 15px;">Core Generative Funding</h3>
+    <div class="funding-grid">
+        <div class="funding-card">
+            <span class="amount-badge">Up to £250</span>
+            <h3>Micro Grant</h3>
+            <ul class="req-list">
+                <li>For small, immediate community improvements.</li>
+                <li>Requires: Clear plan of action.</li>
+                <li>Business requirement: Reinvest within 2 years.</li>
+            </ul>
+            <a href="#" class="apply-btn">Apply Now</a>
+        </div>
+        <div class="funding-card">
+            <span class="amount-badge">Up to £2,500</span>
+            <h3>Emergency Fund</h3>
+            <ul class="req-list">
+                <li>Rapid response for critical crises.</li>
+                <li>Requires: Demonstrated urgent necessity.</li>
+                <li>Requirement: Reinvest in 2 years OR provide mentoring support.</li>
+            </ul>
+            <a href="#" class="apply-btn">Apply Now</a>
+        </div>
+        <div class="funding-card">
+            <span class="amount-badge">Up to £5,000</span>
+            <h3>Generative Fund</h3>
+            <ul class="req-list">
+                <li>Support structural conversion to generative models.</li>
+                <li>Documentation: Clear roadmap of organizational change required.</li>
+                <li>Note: Hive provides guidance regardless of grant outcome.</li>
+            </ul>
+            <a href="#" class="apply-btn">Apply Now</a>
+        </div>
+    </div>
+</section>
+        
+            
 
         <section id="network-sec" class="hub-page">
             <div class="top-bar"><h1>🤝 Member Network</h1></div>
